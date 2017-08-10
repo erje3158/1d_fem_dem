@@ -1,0 +1,41 @@
+#!/bin/bash
+#PBS -N huC++_DEM
+#PBS -l select=2:ncpus=32:mpiprocs=32
+#PBS -l walltime=160:00:00
+#PBS -l place=scatter:excl
+#PBS -q standard
+#PBS -j oe
+#PBS -V
+#PBS -A ONRDC34502393
+#PBS -m be
+#PBS -M jensen.erik.w@gmail.com
+
+# --- USER INPUT ---
+export PREFIX=$PBS_JOBNAME #PBS_JOBNAME is the name of the job that's been submitted
+export LOCAL_DIR=$PBS_O_WORKDIR #the directory where the script was run 
+export TMPD=$WORKDIR #my personal work directory on excalibur - data here is temp (15 days after run done)
+JOBNUM=`echo ${PBS_JOBID} | cut -d "." -f 1` #create variable out of job number PBS assigns this job
+
+export NSLOTS=`wc -l $PBS_NODEFILE | cut -f1 -d" "`
+echo NSLOTS = $NSLOTS
+
+export OMP_NUM_THREADS=32
+
+# --- WORKING DIRECTORY ---
+export TMP_DIR=${TMPD}/${JOBNUM} #create directory to run the job in $WORKDIR/$JOBNUM
+mkdir -p ${TMP_DIR}
+cp -r ${LOCAL_DIR}/* ${TMP_DIR} #copies everything from the place this script is run into the work dir
+cd ${TMP_DIR}
+ln -s ${TMP_DIR} ${LOCAL_DIR}/${JOBNUM} #create link to the work dir
+pwd
+
+# --- MACHINE SPECIFIC ---
+module swap PrgEnv-intel PrgEnv-gnu
+module list
+
+#### NPROCS = select*mpiprocs
+
+echo Simulation started at `date`
+aprun -n 2 ./EJ_code ./inputs/input_boundary_file ./inputs/input_particle_file /usr/people/erje3158/hierarchical_upscaling/c++_parallel/Jensen_code_MPI/bin/qdelaunay ./outputs/
+echo Simulation finished at `date`
+
