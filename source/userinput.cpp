@@ -8,14 +8,8 @@
 
 #include <iostream>
 #include <fstream>
-#include <iomanip>
 #include <cmath>
 #include <string>
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <cstring>
 
 class userinput
 {
