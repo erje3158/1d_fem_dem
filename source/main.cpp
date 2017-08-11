@@ -67,7 +67,7 @@ int main(int argc, char * argv[]) {
     
     struct stat info;
     
-    const char * BI_file_Path, * PI_file_Path, * outputDir, * qdel_Path;
+    const char * BI_file_Path, * PI_file_Path, * outputDir, * qdel_Path, * inputFile;
     
     ofstream d_file, v_file, a_file, t_file, stress_file, isv_file, F_S_file;
     char cCurrentPath[FILENAME_MAX];
@@ -79,8 +79,8 @@ int main(int argc, char * argv[]) {
     	MPI_Abort(MPI_COMM_WORLD, rc);
     }
 
-    if(argc > 5 || argc < 5) {
-        cout << "Input Format: " << argv[0] << " <Path to Boundary Input File> <Path to Particle Input File> <Path to qdelauny> <Directory to Write Outputs>" << endl;
+    if(argc > 6 || argc < 6) {
+        cout << "Input Format: " << argv[0] << " <Path to Boundary Input File> <Path to Particle Input File> <Path to qdelauny> <Directory to Write Outputs> <Path to Parameter Input File>" << endl;
         return -1;
     }
 
@@ -94,6 +94,7 @@ int main(int argc, char * argv[]) {
     PI_file_Path = argv[2];
     qdel_Path    = argv[3];
     outputDir    = argv[4];
+    inputFile    = argv[5];
     if(rank==0) {
     	cout << "Armadillo version: " << arma_version::as_string() << endl;
     	if(ifstream(BI_file_Path)) {
@@ -117,6 +118,13 @@ int main(int argc, char * argv[]) {
     		cout << "qdelaunay binary not found...exiting..." << endl;
     		return -1;
     	}
+    	if(ifstream(inputFile)) {
+    		cout << "Parameter Input File found..." << endl;
+    	}
+    	else {
+    		cout << "Parameter Input File not found...exiting..." << endl;
+    		return -1;
+    	}
 
     	// Get Current Directory Path where the programming is running
     	if (!getcwd(cCurrentPath, sizeof(cCurrentPath)))
@@ -128,6 +136,11 @@ int main(int argc, char * argv[]) {
     }
 
     MPI_Barrier(MPI_COMM_WORLD);
+
+    userinput myinputs;
+    myinputs.readData(inputFile);
+    myinputs.echoData();
+    exit(0);
 
     //Elatic parameters taking from dry mason sand calibration effort
     lambda = 3.13e8;  // Pa
