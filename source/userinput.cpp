@@ -45,3 +45,11 @@ public:
   }
 
 };
+
+
+int main () {
+  userinput myinput;
+  myinput.readData("test_input");
+  myinput.echoData();
+  return 0;
+}
