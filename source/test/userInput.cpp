@@ -6,30 +6,31 @@
 //  Copyright �� 2017 Erik Jensen. All rights reserved.
 //
 
+using namespace std;
+
 #include <iostream>
 #include <fstream>
-#include <cmath>
 #include <string>
 
-class userinput
+class userInput
 {
 public:
 
-  int alphaM        ;  //Mass proportional damping parameter alpha
+  double alphaM        ;  //Mass proportional damping parameter alpha
 
   //Inititalize values in memory
-  userinput()
+  userInput()
   {
-    alphaM = 0;
+    alphaM = 0.0;
   }
 
   //Read data from input file
-  void readData(string inputfile)
+  void readData()
   {
-    sting line; ifstream input(inputfile);
+    string line; ifstream input("test_input");
     while ( getline(input,line) )
       {
-	if ( line == "$alphaM"           ) { input >> alphaM     ;          }
+  	if ( line == "$alphaM"           ) { input >> alphaM     ;          }
       }
     input.close();
   }
@@ -44,12 +45,13 @@ public:
     cout << endl;
   }
 
-};
+  };
 
 
-int main () {
-  userinput myinput;
-  myinput.readData("test_input");
+int main () 
+{
+  userInput myinput;
+  myinput.readData();
   myinput.echoData();
-  return 0;
+
 }
