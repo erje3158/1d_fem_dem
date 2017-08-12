@@ -25,9 +25,9 @@ public:
   }
 
   //Read data from input file
-  void readData()
+  void readData(const char * inputFile)
   {
-    string line; ifstream input("test_input");
+    string line; ifstream input(inputFile);
     while ( getline(input,line) )
       {
   	if ( line == "$alphaM"           ) { input >> alphaM     ;          }
@@ -48,10 +48,13 @@ public:
   };
 
 
-int main () 
+int main (int argc, char * argv[]) 
 {
+  
+  const char * inputFile = argv[1];
+  
   userInput myinput;
-  myinput.readData();
+  myinput.readData(inputFile);
   myinput.echoData();
 
 }
