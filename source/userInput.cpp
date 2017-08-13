@@ -11,7 +11,7 @@ using namespace std;
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "routines.h"
+#include "userInput.h"
 
 //Read data from input file
 void userInput::readData(const char * inputFile)
