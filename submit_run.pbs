@@ -34,7 +34,7 @@ export OUT=${LOCAL_DIR}/outputs
 
 export TMP_DIR=${TMPD}/${JOBNUM} #create directory to run the job in $WORKDIR/$JOBNUM
 mkdir -p ${TMP_DIR}
-cp -r ${EXE}/EJ_code ${TMP_DIR} #copies everything from the place this script is run into the work dir
+cp -r ${EXE}/hu_code ${TMP_DIR} #copies everything from the place this script is run into the work dir
 cd ${TMP_DIR}
 ln -s ${TMP_DIR}/ ${OUT}/${JOBNUM} #create link to the work dir
 pwd
