@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -N huC++_DEM
+#PBS -N hu_code_test
 #PBS -l select=4:ncpus=36:mpiprocs=1
 #PBS -l walltime=1:00:00
 #PBS -l place=scatter:excl
@@ -34,9 +34,10 @@ export OUT=${LOCAL_DIR}/outputs
 
 export TMP_DIR=${TMPD}/${JOBNUM} #create directory to run the job in $WORKDIR/$JOBNUM
 mkdir -p ${TMP_DIR}
+mkdir -p ${OUT}/${PREFIX}/${JOBNUM}
 cp -r ${EXE}/hu_code ${TMP_DIR} #copies everything from the place this script is run into the work dir
 cd ${TMP_DIR}
-ln -s ${TMP_DIR}/ ${OUT}/${JOBNUM} #create link to the work dir
+#ln -s ${TMP_DIR}/ ${OUT}/${JOBNUM} #create link to the work dir
 pwd
 
 # --- LD_LIBRARY_PATH ---
@@ -51,7 +52,12 @@ module unload compiler/intel/16.0.0
 module load compiler/gcc/6.1.0
 module list
 
+# --- EXECUTE JOB ---
+
 echo Simulation started at `date`
-mpiexec_mpt -np $NSLOTS ./EJ_code ${INP}/input_boundary_file ${INP}/input_particle_file ${BIN}/qdelaunay ${INP}/test_input .
+mpiexec_mpt -np $NSLOTS ./hu_code ${INP}/input_boundary_file ${INP}/input_particle_file ${BIN}/qdelaunay ${INP}/test_input .
 echo Simulation finished at `date`
 
+# --- CLEAN UP ---
+cp -r ${TMP_DIR}/* ${OUT}/${PREFIX}/${JOBNUM}
+ln -s ${TMP_DIR} ${OUT}/${PREFIX}/${JOBNUM}/${JOBNUM} #create link to the work dir

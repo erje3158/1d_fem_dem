@@ -1,2 +1,4 @@
 source/*.o
 source/hu_code
+*.o*
+outputs/*/
