@@ -91,3 +91,20 @@ void el_kd_g2int(rowvec coordsx,
                  vec params,
                  int el,
                  mat & stiff_el);
+
+class userInput
+{
+ public:
+  
+  double alphaM;
+
+  userInput()
+    {
+      alphaM = 0.0;
+    }
+
+  void readData(const char * inputFile);
+  void echoData();
+
+};
+    
