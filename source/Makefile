@@ -1,4 +1,4 @@
-programName = EJ_code
+programName = hu_code
 CXX =  mpicxx -DOPENMP -fopenmp#icpc g++
 OPT = -std=c++0x -g -O3 -mtune=native -msse4.2#-dynamic -ffast-math -funroll-loops
 INC = -I../include -I./include

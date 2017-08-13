@@ -25,9 +25,9 @@ public:
   }
 
   //Read data from input file
-  void readData()
+  void readData(const char * inputFile)
   {
-    string line; ifstream input("test_input");
+    string line; ifstream input(inputFile);
     while ( getline(input,line) )
       {
   	if ( line == "$alphaM"           ) { input >> alphaM     ;          }
@@ -46,4 +46,5 @@ public:
   }
 
   };
+
 
