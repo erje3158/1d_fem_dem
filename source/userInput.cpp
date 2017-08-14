@@ -19,7 +19,7 @@ void userInput::readData(const char * inputFile)
   string line; ifstream input(inputFile);
   while ( getline(input,line) )
     {
-      if ( line == "$alphaM"           ) { input >> alphaM     ;          }
+      if ( line == "$alphaM"           ) { input >> this->alphaM     ;          }
     }
   input.close();
 }
@@ -30,7 +30,7 @@ void userInput::echoData()
   cout << endl;
   cout << "Summary of Inputs:" << endl;
   cout << endl;
-  cout << "alphaM = " << alphaM << endl;
+  cout << "alphaM = " << this->alphaM << endl;
   cout << endl;
 }
 
