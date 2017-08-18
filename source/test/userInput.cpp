@@ -6,55 +6,34 @@
 //  Copyright �� 2017 Erik Jensen. All rights reserved.
 //
 
-using namespace std;
-
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "userInput.h"
 
-class userInput
+using namespace std;
+
+//Read data from input file
+void userInput::readData(const char * inputFile)
 {
-public:
-
-  double alphaM        ;  //Mass proportional damping parameter alpha
-
-  //Inititalize values in memory
-  userInput()
-  {
-    alphaM = 0.0;
-  }
-
-  //Read data from input file
-  void readData(const char * inputFile)
-  {
-    string line; ifstream input(inputFile);
-    while ( getline(input,line) )
-      {
-  	if ( line == "$alphaM"           ) { input >> alphaM     ;          }
-      }
-    input.close();
-  }
-
-  //Print user inputs for review
-  void echoData()
-  {
-    cout << endl;
-    cout << "Summary of Inputs:" << endl;
-    cout << endl;
-    cout << "alphaM = " << alphaM << endl;
-    cout << endl;
-  }
-
-  };
-
-
-int main (int argc, char * argv[]) 
-{
-  
-  const char * inputFile = argv[1];
-  
-  userInput myinput;
-  myinput.readData(inputFile);
-  myinput.echoData();
-
+  string line; ifstream input(inputFile);
+  while ( getline(input,line) )
+    {
+      if ( line == "$alphaM"           ) { input >> this->alphaM     ;          }
+    }
+  input.close();
 }
+
+//Print user inputs for review
+void userInput::echoData()
+{
+  cout << endl;
+  cout << "Summary of Inputs:" << endl;
+  cout << endl;
+  cout << "alphaM = " << this->alphaM << endl;
+  cout << endl;
+}
+
+
+
+

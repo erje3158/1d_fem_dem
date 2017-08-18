@@ -1,4 +1,9 @@
 #!/bin/bash
 
-gcc -Wall userInput.cpp -o testrun -lstdc++
+# Compilation script for ubuntu
+# gcc -Wall userInput.cpp -o testrun -lstdc++
 
+# Compilatoin script for max
+g++ -c main.cpp
+g++ -c userInput.cpp
+g++ -o testrun main.o userInput.o
