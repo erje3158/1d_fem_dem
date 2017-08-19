@@ -8,7 +8,9 @@ class userInput
 {
 	public:
   
-  	double lambda mu rho;
+  	double lambda;
+	double mu;
+	double rho;
 
   	double alphaM;
 
