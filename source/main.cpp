@@ -141,7 +141,6 @@ int main(int argc, char * argv[]) {
     userInput myinputs;
     myinputs.readData(fem_inputs);
     myinputs.echoData();
-    exit(0);
 
     //Elatic parameters taking from dry mason sand calibration effort
     lambda = 3.13e8;  // Pa
@@ -160,7 +159,9 @@ int main(int argc, char * argv[]) {
     Area = PI * pow(r,2.0);  // m^2
     
     //Damping
-    alphaM = 5e3;
+    alphaM = myinputs.alphaM;
+    cout << "alphaM = " << alphaM << endl;
+    exit(0);
     
     //Geometry
     

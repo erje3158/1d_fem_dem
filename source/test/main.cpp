@@ -22,4 +22,7 @@ int main (int argc, char * argv[])
   myinput.readData(inputFile);
   myinput.echoData();
 
+  double testVar = myinput.alphaM;
+  cout << "testVar = " << testVar << endl;
+
 }
