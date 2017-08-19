@@ -357,12 +357,14 @@ int main(int argc, char * argv[]) {
 		cout << "AAAAAHHHHHH WRONG!!!!!" << endl;
 	}
 	
-	MPI_Barrier(MPI_COMM_WORLD);
+    MPI_Barrier(MPI_COMM_WORLD);
 
     if (rank == 0)
     {
         myinputs.echoData();
     }
+
+    MPI_Barrier(MPI_COMM_WORLD);
 
     exit(0);
 
