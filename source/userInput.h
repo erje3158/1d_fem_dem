@@ -6,13 +6,19 @@ using namespace std;
 
 class userInput
 {
- public:
+	public:
   
-  double alphaM;
+  	double lambda mu rho;
 
-  userInput()
+  	double alphaM;
+
+  	userInput()
     {
-      alphaM = 0.0;
+    	lambda = 0.0;
+    	mu = 0.0;
+    	rho = 0.0;
+
+    	alphaM = 0.0;
     }
 
   void readData(const char * inputFile);

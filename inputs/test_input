@@ -1,2 +1,7 @@
-$alphaM
+$FEM Parameters
+3.13e8
+2.8e8
+1.54
+
+$Mass Damping
 5e5

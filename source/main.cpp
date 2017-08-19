@@ -96,6 +96,7 @@ int main(int argc, char * argv[]) {
     qdel_Path    = argv[3];
     outputDir    = argv[4];
     fem_inputs   = argv[5];
+
     if(rank==0) {
     	cout << "Armadillo version: " << arma_version::as_string() << endl;
     	if(ifstream(BI_file_Path)) {
@@ -138,14 +139,14 @@ int main(int argc, char * argv[]) {
 
     MPI_Barrier(MPI_COMM_WORLD);
 
+    //Read data from input file (fem_inputs)
     userInput myinputs;
     myinputs.readData(fem_inputs);
-    myinputs.echoData();
 
     //Elatic parameters taking from dry mason sand calibration effort
-    lambda = 3.13e8;  // Pa
-    mu = 2.8e8;       // Pa
-    rho = 1.54;       // g/cc
+    lambda = myinputs.lambda;  // Pa
+    mu = myinputs.mu;       // Pa
+    rho = myinputs.rho;       // g/cc
     rho = rho*1000.0; // kg/m^3
     
     //Gravitational Acceleration
@@ -160,8 +161,6 @@ int main(int argc, char * argv[]) {
     
     //Damping
     alphaM = myinputs.alphaM;
-    cout << "alphaM = " << alphaM << endl;
-    exit(0);
     
     //Geometry
     
@@ -359,6 +358,13 @@ int main(int argc, char * argv[]) {
 	}
 	
 	MPI_Barrier(MPI_COMM_WORLD);
+
+    if (rank == 0)
+    {
+        myinputs.echoData();
+    }
+
+    exit(0);
 
     for(n = 1; n <= nsteps; n++) {
     	if(rank == 0) {

@@ -19,7 +19,10 @@ void userInput::readData(const char * inputFile)
   string line; ifstream input(inputFile);
   while ( getline(input,line) )
     {
-      if ( line == "$alphaM"           ) { input >> this->alphaM     ;          }
+      if ( line == "$FEM Parameters"         ) { input >> this->lambda     ;
+                                                 input >> this->mu         ;
+                                                 input >> this->rho        ;}
+      if ( line == "$Mass Damping"           ) { input >> this->alphaM     ;}
     }
   input.close();
 }
@@ -28,8 +31,16 @@ void userInput::readData(const char * inputFile)
 void userInput::echoData()
 {
   cout << endl;
+  cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
   cout << "Summary of Inputs:" << endl;
+  cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
   cout << endl;
+  cout << "FEM Paramters" << endl;
+  cout << "lambda = " << this->lambda << endl;
+  cout << "mu     = " << this->mu     << endl;
+  cout << "rho    = " << this->rho    << endl;
+  cout << endl;
+  cout << "Mass Damping" << endl;
   cout << "alphaM = " << this->alphaM << endl;
   cout << endl;
 }
