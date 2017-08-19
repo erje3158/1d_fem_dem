@@ -55,9 +55,9 @@ module list
 # --- EXECUTE JOB ---
 
 echo Simulation started at `date`
-mpiexec_mpt -np $NSLOTS ./hu_code ${INP}/input_boundary_file ${INP}/input_particle_file ${BIN}/qdelaunay ${INP}/test_input .
+mpiexec_mpt -np $NSLOTS ./hu_code ${INP}/input_boundary_file ${INP}/input_particle_file ${BIN}/qdelaunay . ${INP}/test_input
 echo Simulation finished at `date`
 
 # --- CLEAN UP ---
-cp -r ${TMP_DIR}/* ${OUT}/${PREFIX}/${JOBNUM}
+#cp -r ${TMP_DIR}/* ${OUT}/${PREFIX}/${JOBNUM}
 ln -s ${TMP_DIR} ${OUT}/${PREFIX}/${JOBNUM}/${JOBNUM} #create link to the work dir

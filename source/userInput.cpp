@@ -6,12 +6,12 @@
 //  Copyright �� 2017 Erik Jensen. All rights reserved.
 //
 
-using namespace std;
-
 #include <iostream>
 #include <fstream>
 #include <string>
 #include "userInput.h"
+
+using namespace std;
 
 //Read data from input file
 void userInput::readData(const char * inputFile)
