@@ -186,6 +186,14 @@ int main(int argc, char * argv[]) {
 
     //Damping
     alphaM = myinputs.alphaM;
+
+    if (rank == 0)
+    {
+        myinputs.echoData();
+    }
+
+    MPI_Barrier(MPI_COMM_WORLD);
+    exit(0);
     
     //FEM Mesh
     coords.set_size(2,2);
@@ -344,15 +352,6 @@ int main(int argc, char * argv[]) {
 	}
 	
     MPI_Barrier(MPI_COMM_WORLD);
-
-    if (rank == 0)
-    {
-        myinputs.echoData();
-    }
-
-    MPI_Barrier(MPI_COMM_WORLD);
-
-    exit(0);
 
     for(n = 1; n <= nsteps; n++) {
     	if(rank == 0) {
