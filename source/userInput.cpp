@@ -39,6 +39,7 @@ void userInput::readData(const char * inputFile)
                                             input >> this->print_int  ;
                                             input >> this->n_print    ;
                                             input >> this->time_tot   ;}
+      if ( line == "$Strain Rate"       ) { input >> this->strainrate ;}
       if ( line == "$Mass Damping"      ) { input >> this->alphaM     ;}
     }
   input.close();
@@ -83,6 +84,9 @@ void userInput::echoData()
   cout << "print_int      = " << this->print_int   << endl;
   cout << "n_print        = " << this->n_print     << endl;
   cout << "time_tot       = " << this->time_tot    << endl;
+  cout << endl;
+  cout << "Strain Rate"                            << endl;
+  cout << "strainrate     = " << this->strainrate  << endl;
   cout << endl;
   cout << "Mass Damping"                           << endl;
   cout << "alphaM         = " << this->alphaM      << endl;

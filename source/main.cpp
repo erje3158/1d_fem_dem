@@ -171,9 +171,6 @@ int main(int argc, char * argv[]) {
     ndof    = myinputs.ndof;
     nel     = myinputs.nel;
     neldof  = myinputs.neldof;
-    
-    //Damping
-    alphaM = myinputs.alphaM;
 
     // Time Parameters
     t          = myinputs.t;
@@ -183,6 +180,12 @@ int main(int argc, char * argv[]) {
     time_tot   = myinputs.time_tot;
     nsteps     = round(time_tot/dt);
     t_ramp     = time_tot;
+
+    // Boundary Conditions
+    strainrate = myinputs.strainrate;
+
+    //Damping
+    alphaM = myinputs.alphaM;
     
     //FEM Mesh
     coords.set_size(2,2);
@@ -210,9 +213,6 @@ int main(int argc, char * argv[]) {
     LM(0,1) = 1;
     LM(1,0) = 1;
     LM(1,1) = 0;
-    
-    // Boundary Conditions
-    strainrate = 387.0;
     
     dispfun_time.zeros(nsteps);
     dispfun_disp.zeros(nsteps);
@@ -256,15 +256,6 @@ int main(int argc, char * argv[]) {
     // Newmark Method Parameters - O(2), explicit
     beta = 0.0;
     gamma = 1.0/2.0;
-    
-    // Trapezoid Rule - O(2), implicit
-    // beta = 1.0/4.0;
-    // gamma = 1.0/2.0;
-    
-    // Newton-Raphson Convergence Tolerance
-    tolr = 1.0e-4;
-    tola = 1.0e-4;
-    iter_break = 10.0;
     
     // Initial Conditions
     // Both M and C are constants

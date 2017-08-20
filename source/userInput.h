@@ -34,6 +34,8 @@ class userInput
   int n_print;           // # of Global Iterations per DEM Snapshot
   double time_tot;       // s
 
+  double strainrate;     // s^-1
+
   double alphaM;         // Mass Proportional Parameter
 
   userInput()
@@ -63,6 +65,8 @@ class userInput
     print_int    = 0;
     n_print      = 0;
     time_tot     = 0.0; 
+    
+    strainrate   = 0.0;
 
    	alphaM       = 0.0; 
   }
