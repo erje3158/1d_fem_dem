@@ -34,7 +34,7 @@ void userInput::readData(const char * inputFile)
                                             input >> this->ndof       ;
                                             input >> this->nel        ;
                                             input >> this->neldof     ;}
-      if ( line == "$Time Paramters"    ) { input >> this->t          ;
+      if ( line == "$Time Parameters"   ) { input >> this->t          ;
                                             input >> this->dt         ;
                                             input >> this->print_int  ;
                                             input >> this->n_print    ;
@@ -50,7 +50,7 @@ void userInput::echoData()
 {
   cout << endl;
   cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-  cout << "Summary of Inputs:" << endl;
+  cout << "Summary of Inputs:"                     << endl;
   cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
   cout << endl;
   cout << "FEM Paramters"                          << endl;
