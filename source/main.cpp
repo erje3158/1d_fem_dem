@@ -144,19 +144,19 @@ int main(int argc, char * argv[]) {
     myinputs.readData(fem_inputs);
 
     //Elatic parameters taking from dry mason sand calibration effort
-    lambda = myinputs.lambda;  // Pa
-    mu = myinputs.mu;          // Pa
-    rho = myinputs.rho;        // kg/m^3
+    lambda  = myinputs.lambda;  // Pa
+    mu      = myinputs.mu;      // Pa
+    rho     = myinputs.rho;     // kg/m^3
     
     //Gravitational Acceleration
-    grav = myinputs.grav;                // m/s^2
+    grav    = myinputs.grav;    // m/s^2
     
     //Geometry
-    d = myinputs.d;   // m
-    r = d/2.0;        // m
-    LDratio = myinputs.LDratio;   // Guess based on Luo et al
-    Area = PI * pow(r,2.0);  // m^2
-    h = d*LDratio;
+    d       = myinputs.d;       // m
+    r       = d/2.0;            // m
+    LDratio = myinputs.LDratio; // Guess based on Luo et al
+    Area    = PI * pow(r,2.0);  // m^2
+    h       = d*LDratio;
 
     // DEM Geometry
     h_DEM = myinputs.h_DEM;         // m
