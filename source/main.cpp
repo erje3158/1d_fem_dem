@@ -145,37 +145,23 @@ int main(int argc, char * argv[]) {
 
     //Elatic parameters taking from dry mason sand calibration effort
     lambda = myinputs.lambda;  // Pa
-    mu = myinputs.mu;       // Pa
-    rho = myinputs.rho;       // g/cc
-    rho = rho*1000.0; // kg/m^3
+    mu = myinputs.mu;          // Pa
+    rho = myinputs.rho;        // kg/m^3
     
     //Gravitational Acceleration
-    grav = 0.0;       // m/s^2
+    grav = myinputs.grav;                // m/s^2
     
     //Geometry
-    d = 0.5;          // in
-    d = d * 0.0254;   // m
+    d = myinputs.d;   // m
     r = d/2.0;        // m
-    LDratio = 0.81;   // Guess based on Luo et al
+    LDratio = myinputs.LDratio;   // Guess based on Luo et al
     Area = PI * pow(r,2.0);  // m^2
-    
-    //Damping
-    alphaM = myinputs.alphaM;
-    
-    //Geometry
-    
     h = d*LDratio;
-    
-    coords.set_size(2,2);
-    coords(0,0) = 0.0;
-    coords(0,1) = h/2;
-    coords(1,0) = h/2;
-    coords(1,1) = h;
-    
+
     // DEM Geometry
-    h_DEM = 0.003;         // m
-    w_DEM = 0.003;         // m
-    l_DEM = 0.003;         // m
+    h_DEM = myinputs.h_DEM;         // m
+    w_DEM = myinputs.w_DEM;         // m
+    l_DEM = myinputs.l_DEM;         // m
     A_DEM = l_DEM * w_DEM; // m^2
     
     // FEM Constants
@@ -185,6 +171,16 @@ int main(int argc, char * argv[]) {
     ndof    = 1;
     nel     = 2;
     neldof  = 2;
+    
+    //Damping
+    alphaM = myinputs.alphaM;
+    
+    //FEM Mesh
+    coords.set_size(2,2);
+    coords(0,0) = 0.0;
+    coords(0,1) = h/2;
+    coords(1,0) = h/2;
+    coords(1,1) = h;
     
     params.set_size(10);
     
