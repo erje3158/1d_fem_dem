@@ -165,15 +165,24 @@ int main(int argc, char * argv[]) {
     A_DEM = l_DEM * w_DEM; // m^2
     
     // FEM Constants
-    numips  = 2;
-    nstress = 6;
-    nisv    = 2;
-    ndof    = 1;
-    nel     = 2;
-    neldof  = 2;
+    numips  = myinputs.numips;
+    nstress = myinputs.nstress;
+    nisv    = myinputs.nisv;
+    ndof    = myinputs.ndof;
+    nel     = myinputs.nel;
+    neldof  = myinputs.neldof;
     
     //Damping
     alphaM = myinputs.alphaM;
+
+    // Time Parameters
+    t          = myinputs.t;
+    dt         = myinputs.dt;
+    print_int  = myinputs.print_int;
+    n_print    = myinputs.n_print;
+    time_tot   = myinputs.time_tot;
+    nsteps     = round(time_tot/dt);
+    t_ramp     = time_tot;
     
     //FEM Mesh
     coords.set_size(2,2);
@@ -201,16 +210,6 @@ int main(int argc, char * argv[]) {
     LM(0,1) = 1;
     LM(1,0) = 1;
     LM(1,1) = 0;
-
-    // Time Parameters
-    t = 0.0;
-    dt = 2.0e-8;
-    print_int=50;
-    n_print=1;
-    time_tot = 0.001;
-    nsteps = round(time_tot/dt);
-    
-    t_ramp = time_tot;
     
     // Boundary Conditions
     strainrate = 387.0;

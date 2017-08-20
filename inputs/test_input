@@ -15,5 +15,20 @@ $DEM Geometry
 0.003
 0.003
 
+$FEM Constants
+2
+6
+2
+1
+2
+2
+
+$Time Parameters
+0.0
+2.0e-8
+50
+1
+0.001
+
 $Mass Damping
 5e5
