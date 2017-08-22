@@ -350,6 +350,8 @@ int main(int argc, char * argv[]) {
         myinputs.echoData();
     }
 
+    myinputs.~femInput();
+
     MPI_Barrier(MPI_COMM_WORLD);
     exit(0);
 
