@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class userInput
+class femInput
 {
 	public:
   
@@ -38,7 +38,7 @@ class userInput
 
   double alphaM;         // Mass Proportional Parameter
 
-  userInput()
+  femInput()
   {
   	lambda       = 0.0; 
    	mu           = 0.0; 

@@ -140,7 +140,7 @@ int main(int argc, char * argv[]) {
     MPI_Barrier(MPI_COMM_WORLD);
 
     //Read data from input file (fem_inputs)
-    userInput myinputs;
+    femInput myinputs;
     myinputs.readData(fem_inputs);
 
     //Elatic parameters taking from dry mason sand calibration effort

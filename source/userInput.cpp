@@ -14,12 +14,12 @@
 using namespace std;
 
 //Read data from input file
-void userInput::readData(const char * inputFile)
+void femInput::readData(const char * inputFile)
 {
   string line; ifstream input(inputFile);
   while ( getline(input,line) )
     {
-      if ( line == "$FEM Parameters"    ) { input >> this->lambda     ;
+      if ( line == "$FEM Constitutive"  ) { input >> this->lambda     ;
                                             input >> this->mu         ;
                                             input >> this->rho        ;}
       if ( line == "$Gravity"           ) { input >> this->grav       ;}
@@ -46,14 +46,14 @@ void userInput::readData(const char * inputFile)
 }
 
 //Print user inputs for review
-void userInput::echoData()
+void femInput::echoData()
 {
   cout << endl << endl;
   cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
   cout << "SUMMARY OF INPUTS:"                        << endl;
   cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
   cout << endl;
-  cout << "FEM Paramters:"                            << endl;
+  cout << "FEM Constitutive:"                         << endl;
   cout << "   lambda         = " << this->lambda      << endl;
   cout << "   mu             = " << this->mu          << endl;
   cout << "   rho            = " << this->rho         << endl;
