@@ -13,6 +13,11 @@
 
 using namespace std;
 
+femInput::~femInput(void)
+{
+  cout << endl << endl << "femInput is being destroyed" << endl << endl;
+}
+
 //Read data from input file
 void femInput::readData(const char * inputFile)
 {
@@ -94,6 +99,48 @@ void femInput::echoData()
   cout << endl << endl << endl;
 }
 
+demInput::~demInput(void)
+{
+  cout << endl << endl << "demInput is being destroyed" << endl << endl;
+}
 
+//Read data from input file
+void demInput::readData(const char * inputFile)
+{
+  string line; ifstream input(inputFile);
+  while ( getline(input,line) )
+    {
+      if ( line == "$Particle Overlap"  ) { input >> this->maxOverlap ;}
+      if ( line == "$DEM Constitutive"  ) { input >> this->youngsMod  ;
+                                            input >> this->poisRatio  ;}
+      if ( line == "$Time Parameters"   ) { input >> this->timestep   ;}
+      if ( line == "$Particle Contact"  ) { input >> this->damping    ;}
+    }
+  input.close();
+}
+
+//Print user inputs for review
+void demInput::echoData()
+{
+  cout << endl << endl;
+  cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+  cout << "SUMMARY OF INPUTS:"                        << endl;
+  cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+  cout << endl;
+  cout << "Particle Overlap:"                         << endl;
+  cout << "   maxOverlap     = " << this->maxOverlap  << endl;
+  cout << endl;  
+  cout << "DEM Constitutive:"                         << endl;
+  cout << "   youngsMod      = " << this->youngsMod   << endl;
+  cout << "   poisRatio      = " << this->poisRatio   << endl;
+  cout << endl;
+  cout << "Time Parameters:"                          << endl;
+  cout << "   timestep       = " << this->timestep    << endl;
+  cout << endl;
+  cout << "Particle Contact:"                         << endl;
+  cout << "   damping        = " << this->damping     << endl;
+  cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+  cout << endl << endl << endl;
+}
 
 
