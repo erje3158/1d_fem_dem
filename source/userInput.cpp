@@ -101,7 +101,7 @@ void femInput::echoData()
 
 demInput::~demInput(void)
 {
-  //cout << endl << endl << "demInput is being destroyed" << endl << endl;
+  cout << endl << endl << "demInput is being destroyed" << endl << endl;
 }
 
 //Read data from input file
