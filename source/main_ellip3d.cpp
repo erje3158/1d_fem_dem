@@ -79,10 +79,6 @@ void main_ellip3d(float disp_top, float disp_bot, int num_runs, int num_threads,
     dem::YOUNG         = demParams.youngsMod;
     dem::POISSON       = demParams.poisRatio;
 
-    cout << "maxOverlap = " << dem::MAXOVERLAP << endl;
-    cout << "youngsMod  = " << dem::YOUNG      << endl;
-    cout << "poisRatio  = " << dem::POISSON    << endl;
-
     dem::assembly A;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

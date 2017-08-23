@@ -432,7 +432,6 @@ int main(int argc, char * argv[]) {
         //el_stress_isv(coords.row(el), d_el.row(el), params, el, ip, stress_el, isv_el);
             
         MPI_Barrier(MPI_COMM_WORLD);
-        exit(0);
 
         //does this need to be sent to each node?
         el_kd_g2int_ellip3d(outputDir, coords.row(el), d_el.row(el), params, n, el, stiff_el.slice(el));
