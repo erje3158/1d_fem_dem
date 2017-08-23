@@ -34,7 +34,7 @@ void el_stress_ellip3d(const char * outputDir,
                        int ip,
                        cube & stress_el,
                        cube & isv_el,
-                       double dt
+                       double dt,
                        demInput demParams);
 
 void main_ellip3d(float disp_top,
@@ -42,7 +42,8 @@ void main_ellip3d(float disp_top,
                   int num_runs,
                   int num_threads,
                   string dirName,
-                  double dt);
+                  double dt,
+		  demInput demParams);
 
 void el_kd_g2int_ellip3d(const char * outputDir,
                          rowvec coordsx,

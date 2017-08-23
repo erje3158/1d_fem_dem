@@ -83,6 +83,8 @@ void timestepping(const char * outputDir,
     vec F_S_el;
     
     double K_temp, K_total, F_S_temp, F_S_total;
+
+    demInput demParams;
     
     lambda = 3.13e8;
     mu = 2.8e8;
@@ -398,9 +400,9 @@ void timestepping(const char * outputDir,
             }
                 
             if (dt==1.0e-7) {
-				el_stress_ellip3d(outputDir, coords.row(el), d_el.row(el), d_el_last.row(el), params, n_save, -1, n, el, ip, stress_el, isv_el, dt);
+				el_stress_ellip3d(outputDir, coords.row(el), d_el.row(el), d_el_last.row(el), params, n_save, -1, n, el, ip, stress_el, isv_el, dt, demParams);
 			} else if (dt==1.0e-8) {
-				el_stress_ellip3d(outputDir, coords.row(el), d_el.row(el), d_el_last.row(el), params, n_save, n_stop, n, el, ip, stress_el, isv_el, dt);
+				el_stress_ellip3d(outputDir, coords.row(el), d_el.row(el), d_el_last.row(el), params, n_save, n_stop, n, el, ip, stress_el, isv_el, dt, demParams);
 			} else {
 				cout << "Location 3: dt isn't correct: dt = " << dt << endl;
 				exit(1);

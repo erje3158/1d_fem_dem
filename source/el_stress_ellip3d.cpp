@@ -15,7 +15,6 @@
 #include <string>
 #include "armadillo"
 #include "routines.h"
-#include "userInput.h"
 
 using namespace arma;
 
@@ -31,7 +30,7 @@ void el_stress_ellip3d(const char * outputDir,
                        int ip,
                        cube & stress_el,
                        cube & isv_el,
-                       double dt
+                       double dt,
                        demInput demParams) {
     double x1, x2, el_length, numips, nstress, Area, nel;
     double const0, xi, lambda, mu, nisv, h0, el_mid;

@@ -20,7 +20,7 @@
 
 #include "armadillo"
 #include "routines.h"
-#include "userInput.h"
+//#include "userInput.h"
 
 #include "mpi.h"
 
