@@ -147,52 +147,56 @@ int main(int argc, char * argv[]) {
     MPI_Barrier(MPI_COMM_WORLD);
 
     //Read data from input file (fem_inputs)
-    femInput myinputs;
-    myinputs.readData(fem_inputs);
+    femInput femParams;
+    femParams.readData(fem_inputs);
+
+    //Read data from input file (dem_inputs)
+    demInput demParams;
+    demParams.readData(dem_inputs);
 
     //Elatic parameters taking from dry mason sand calibration effort
-    lambda  = myinputs.lambda;  // Pa
-    mu      = myinputs.mu;      // Pa
-    rho     = myinputs.rho;     // kg/m^3
+    lambda  = femParams.lambda;  // Pa
+    mu      = femParams.mu;      // Pa
+    rho     = femParams.rho;     // kg/m^3
     
     //Gravitational Acceleration
-    grav    = myinputs.grav;    // m/s^2
+    grav    = femParams.grav;    // m/s^2
     
     //Geometry
-    d       = myinputs.d;       // m
+    d       = femParams.d;       // m
     r       = d/2.0;            // m
-    LDratio = myinputs.LDratio; // Guess based on Luo et al
+    LDratio = femParams.LDratio; // Guess based on Luo et al
     Area    = PI * pow(r,2.0);  // m^2
     h       = d*LDratio;
 
     // DEM Geometry
-    h_DEM = myinputs.h_DEM;         // m
-    w_DEM = myinputs.w_DEM;         // m
-    l_DEM = myinputs.l_DEM;         // m
+    h_DEM = femParams.h_DEM;         // m
+    w_DEM = femParams.w_DEM;         // m
+    l_DEM = femParams.l_DEM;         // m
     A_DEM = l_DEM * w_DEM; // m^2
     
     // FEM Constants
-    numips  = myinputs.numips;
-    nstress = myinputs.nstress;
-    nisv    = myinputs.nisv;
-    ndof    = myinputs.ndof;
-    nel     = myinputs.nel;
-    neldof  = myinputs.neldof;
+    numips  = femParams.numips;
+    nstress = femParams.nstress;
+    nisv    = femParams.nisv;
+    ndof    = femParams.ndof;
+    nel     = femParams.nel;
+    neldof  = femParams.neldof;
 
     // Time Parameters
-    t          = myinputs.t;
-    dt         = myinputs.dt;
-    print_int  = myinputs.print_int;
-    n_print    = myinputs.n_print;
-    time_tot   = myinputs.time_tot;
+    t          = femParams.t;
+    dt         = femParams.dt;
+    print_int  = femParams.print_int;
+    n_print    = femParams.n_print;
+    time_tot   = femParams.time_tot;
     nsteps     = round(time_tot/dt);
     t_ramp     = time_tot;
 
     // Boundary Conditions
-    strainrate = myinputs.strainrate;
+    strainrate = femParams.strainrate;
 
     //Damping
-    alphaM = myinputs.alphaM;
+    alphaM = femParams.alphaM;
     
     //FEM Mesh
     coords.set_size(2,2);
@@ -203,17 +207,22 @@ int main(int argc, char * argv[]) {
     
     params.set_size(10);
     
-    params(0) = lambda;
-    params(1) = mu;
-    params(2) = rho;
-    params(3) = grav;
-    params(4) = numips;
-    params(5) = nstress;
-    params(6) = nisv;
-    params(7) = Area;
-    params(8) = h_DEM;
-    params(9) = nel;
-    
+    params(0 ) = lambda;
+    params(1 ) = mu;
+    params(2 ) = rho;
+    params(3 ) = grav;
+    params(4 ) = numips;
+    params(5 ) = nstress;
+    params(6 ) = nisv;
+    params(7 ) = Area;
+    params(8 ) = h_DEM;
+    params(9 ) = nel;
+    //params(10) = demParams.maxOverlap; 
+    //params(11) = demParams.youngsMod;
+    //params(12) = demParams.poisRatio;
+    //params(13) = demParams.timestep;
+    //params(14) = demParams.damping;
+
     // LM array
     LM.set_size(2,2);
     LM(0,0) = 0;
@@ -354,18 +363,13 @@ int main(int argc, char * argv[]) {
 
     if (rank == 0)
     {
-        myinputs.echoData();
-
-        demInput testinput;
-        testinput.readData(dem_inputs);
-        testinput.echoData();
-        testinput.~demInput();
+        femParams.echoData();
+        demParams.echoData();
     }
 
-    myinputs.~femInput();
+    femParams.~femInput();
 
     MPI_Barrier(MPI_COMM_WORLD);
-    exit(0);
 
     for(n = 1; n <= nsteps; n++) {
     	if(rank == 0) {
@@ -424,10 +428,11 @@ int main(int argc, char * argv[]) {
             n_print++;
         }
         
-        el_stress_ellip3d(outputDir, coords.row(el), d_el.row(el), d_el_last.row(el), params, n_print, -1, -1, el, ip, stress_el, isv_el, dt);
+        el_stress_ellip3d(outputDir, coords.row(el), d_el.row(el), d_el_last.row(el), params, n_print, -1, -1, el, ip, stress_el, isv_el, dt, demParams);
         //el_stress_isv(coords.row(el), d_el.row(el), params, el, ip, stress_el, isv_el);
             
         MPI_Barrier(MPI_COMM_WORLD);
+        exit(0);
 
         //does this need to be sent to each node?
         el_kd_g2int_ellip3d(outputDir, coords.row(el), d_el.row(el), params, n, el, stiff_el.slice(el));

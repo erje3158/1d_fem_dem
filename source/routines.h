@@ -6,6 +6,8 @@
 //  Copyright © 2016 Christopher Kung. All rights reserved.
 //
 
+#include "userInput.h"
+
 using namespace arma;
 using namespace std;
 
@@ -26,13 +28,14 @@ void el_stress_ellip3d(const char * outputDir,
                        rowvec d_last,
                        vec params,
                        int n_save,
-					   int n_stop,
+					             int n_stop,
                        int n,
                        int el,
                        int ip,
                        cube & stress_el,
                        cube & isv_el,
-                       double dt);
+                       double dt
+                       demInput demParams);
 
 void main_ellip3d(float disp_top,
                   float disp_bot,

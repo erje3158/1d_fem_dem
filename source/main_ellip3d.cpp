@@ -14,11 +14,13 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include "userInput.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // main program
-void main_ellip3d(float disp_top, float disp_bot, int num_runs, int num_threads, std::string dirName, double dt)
+void main_ellip3d(float disp_top, float disp_bot, int num_runs, int num_threads, std::string dirName, double dt, demInput demParams)
 {
+    demParams.echoData();
     // the number of arguments is 3/4
     // serial: ./ellip3d topDisplacement bottomDisplacement numberOfCalls
     // openMP: ./ellip3d topDisplacement bottomDisplacement numberOfCalls numThreads

@@ -15,6 +15,7 @@
 #include <string>
 #include "armadillo"
 #include "routines.h"
+#include "userInput.h"
 
 using namespace arma;
 
@@ -30,7 +31,8 @@ void el_stress_ellip3d(const char * outputDir,
                        int ip,
                        cube & stress_el,
                        cube & isv_el,
-                       double dt) {
+                       double dt
+                       demInput demParams) {
     double x1, x2, el_length, numips, nstress, Area, nel;
     double const0, xi, lambda, mu, nisv, h0, el_mid;
     double sig11, mass, disp, trash;
@@ -124,7 +126,7 @@ void el_stress_ellip3d(const char * outputDir,
     // Change to the output directory path so that ellips3d can run
     chdir(dirName.c_str());
 
-    main_ellip3d(float(dtop(0)), float(dbot(0)), n_save, num_threads, dirName, dt);
+    main_ellip3d(float(dtop(0)), float(dbot(0)), n_save, num_threads, dirName, dt, demParams);
         
     // Change back to the directory from where this code is being run so that file inputs can be referenced properly
     chdir(cCurrentPath);
