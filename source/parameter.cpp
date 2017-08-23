@@ -17,7 +17,7 @@ const REAL EPS        = 1.0e-12;
 
 // relative overlap between particles
 const REAL MINOVERLAP = 1.0e-6;
-const REAL MAXOVERLAP = 5.0e-1;
+REAL MAXOVERLAP = 5.0e-1;
 
 // measurable absolute overlap precision between particles, enabled/disabled by macro MEASURE_EPS
 const REAL MEPS       = 1.0e-8;  // 0.1 micron or 0.01 micron
@@ -27,8 +27,8 @@ long idum             = -1;      // not a constant
 
 // particle material property
 // const REAL YOUNG      = 107.8e+9;// quartz sand E  = 29GPa
-const REAL YOUNG      = 8.0e+9;// quartz sand E  = 29GPa
-const REAL POISSON    = 0.18;    // quartz sand v  = 0.25     
+REAL YOUNG      = 8.0e+9;// quartz sand E  = 29GPa
+REAL POISSON    = 0.18;    // quartz sand v  = 0.25     
 const REAL Gs         = 2.65;    // quartz sand Gs = 2.65    
 
 // membrane particle material property

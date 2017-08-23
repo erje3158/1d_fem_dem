@@ -20,7 +20,6 @@
 // main program
 void main_ellip3d(float disp_top, float disp_bot, int num_runs, int num_threads, std::string dirName, double dt, demInput demParams)
 {
-    demParams.echoData();
     // the number of arguments is 3/4
     // serial: ./ellip3d topDisplacement bottomDisplacement numberOfCalls
     // openMP: ./ellip3d topDisplacement bottomDisplacement numberOfCalls numThreads
@@ -57,7 +56,7 @@ void main_ellip3d(float disp_top, float disp_bot, int num_runs, int num_threads,
 */
     
     // --- dynamic relaxation and scaling
-    dem::TIMESTEP      = 2.0e-8; //
+    dem::TIMESTEP      = demParams.timestep; //
     dem::MASS_SCL      = 1.0;
     dem::MNT_SCL       = 1.0;
     dem::GRVT_SCL      = 1.0;       // 1.0e+03;
@@ -65,7 +64,7 @@ void main_ellip3d(float disp_top, float disp_bot, int num_runs, int num_threads,
     dem::DMP_M         = 0;
     
     // 2. normal damping and tangential friciton
-    dem::DMP_CNT       = 0.7;    // normal contact damping ratio
+    dem::DMP_CNT       = demParams.damping;    // normal contact damping ratio
     dem::FRICTION      = 0.8;     // coefficient of friction between particles
     dem::BDRYFRIC      = 0.8;     // coefficient of friction between particle and rigid wall
     dem::COHESION      = 0;       // cohesion between particles, 5.0e+8
@@ -75,6 +74,14 @@ void main_ellip3d(float disp_top, float disp_bot, int num_runs, int num_threads,
     dem::RELEASE_RATE  = 7.0e-03; // the same as above
     dem::PILE_RATE     = 2.5e-01; // pile penetration velocity
     dem::STRESS_ERROR  = 2.0e-02; // tolerance of stress equilibrium on rigid walls
+
+    dem::MAXOVERLAP    = demParams.maxOverlap;
+    dem::YOUNG         = demParams.youngsMod;
+    dem::POISSON       = demParams.poisRatio;
+
+    cout << "maxOverlap = " << dem::MAXOVERLAP << endl;
+    cout << "youngsMod  = " << dem::youngsMod  << endl;
+    cout << "poisRatio  = " << dem::poisRatio  << endl;
 
     dem::assembly A;
 
