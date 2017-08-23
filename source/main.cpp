@@ -68,7 +68,7 @@ int main(int argc, char * argv[]) {
     
     struct stat info;
     
-    const char * BI_file_Path, * PI_file_Path, * outputDir, * qdel_Path, * fem_inputs;
+    const char * BI_file_Path, * PI_file_Path, * outputDir, * qdel_Path, * fem_inputs, * dem_inputs;
     
     ofstream d_file, v_file, a_file, t_file, stress_file, isv_file, F_S_file;
     char cCurrentPath[FILENAME_MAX];
@@ -80,8 +80,8 @@ int main(int argc, char * argv[]) {
     	MPI_Abort(MPI_COMM_WORLD, rc);
     }
 
-    if(argc > 6 || argc < 6) {
-        cout << "Input Format: " << argv[0] << " <Path to Boundary Input File> <Path to Particle Input File> <Path to qdelauny> <Directory to Write Outputs> <Path to FEM Inputs>" << endl;
+    if(argc > 7 || argc < 7) {
+        cout << "Input Format: " << argv[0] << " <Path to Boundary Input File> <Path to Particle Input File> <Path to qdelauny> <Directory to Write Outputs> <Path to FEM Inputs> <Path to DEM Inputs>" << endl;
         return -1;
     }
 
@@ -96,6 +96,7 @@ int main(int argc, char * argv[]) {
     qdel_Path    = argv[3];
     outputDir    = argv[4];
     fem_inputs   = argv[5];
+    dem_inputs   = argv[6];
 
     if(rank==0) {
     	cout << "Armadillo version: " << arma_version::as_string() << endl;
@@ -127,7 +128,13 @@ int main(int argc, char * argv[]) {
     		cout << "FEM input file not found...exiting..." << endl;
     		return -1;
     	}
-
+        if(ifstream(dem_inputs)) {
+            cout << "DEM input file found..." << endl;
+        }
+        else {
+            cout << "DEM input file not found...exiting..." << endl;
+            return -1;
+        }
     	// Get Current Directory Path where the programming is running
     	if (!getcwd(cCurrentPath, sizeof(cCurrentPath)))
     	{
@@ -348,6 +355,11 @@ int main(int argc, char * argv[]) {
     if (rank == 0)
     {
         myinputs.echoData();
+
+        demInput testinput;
+        testinput.readData(dem_inputs);
+        testinput.echoData();
+        testinput.~demInput();
     }
 
     myinputs.~femInput();
