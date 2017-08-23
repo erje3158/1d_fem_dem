@@ -23,7 +23,7 @@ extern const REAL EPS;
 
 // relative overlap between particles
 extern const REAL MINOVERLAP;
-extern const REAL MAXOVERLAP;
+extern REAL MAXOVERLAP;
 
 // macro to toggle on/off MEPS
 #define MEASURE_EPS
@@ -38,8 +38,8 @@ extern long idum;
 //#define RANDOM_SHAPE
 
 // particle material property
-extern const REAL YOUNG;  
-extern const REAL POISSON;      
+extern REAL YOUNG;  
+extern REAL POISSON;      
 extern const REAL Gs;   
 
 // membrane particle material property
