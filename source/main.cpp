@@ -20,7 +20,6 @@
 
 #include "armadillo"
 #include "routines.h"
-//#include "userInput.h"
 
 #include "mpi.h"
 
@@ -155,33 +154,33 @@ int main(int argc, char * argv[]) {
     demParams.readData(dem_inputs);
 
     //Elatic parameters taking from dry mason sand calibration effort
-    lambda  = femParams.lambda;  // Pa
-    mu      = femParams.mu;      // Pa
-    rho     = femParams.rho;     // kg/m^3
+    lambda     = femParams.lambda;  // Pa
+    mu         = femParams.mu;      // Pa
+    rho        = femParams.rho;     // kg/m^3
     
     //Gravitational Acceleration
-    grav    = femParams.grav;    // m/s^2
-    
+    grav       = femParams.grav;    // m/s^2
+       
     //Geometry
-    d       = femParams.d;       // m
-    r       = d/2.0;            // m
-    LDratio = femParams.LDratio; // Guess based on Luo et al
-    Area    = PI * pow(r,2.0);  // m^2
-    h       = d*LDratio;
+    d          = femParams.d;       // m
+    r          = d/2.0;            // m
+    LDratio    = femParams.LDratio; // Guess based on Luo et al
+    Area       = PI * pow(r,2.0);  // m^2
+    h          = d*LDratio;
 
     // DEM Geometry
-    h_DEM = femParams.h_DEM;         // m
-    w_DEM = femParams.w_DEM;         // m
-    l_DEM = femParams.l_DEM;         // m
-    A_DEM = l_DEM * w_DEM; // m^2
+    h_DEM      = femParams.h_DEM;         // m
+    w_DEM      = femParams.w_DEM;         // m
+    l_DEM      = femParams.l_DEM;         // m
+    A_DEM      = l_DEM * w_DEM; // m^2
     
     // FEM Constants
-    numips  = femParams.numips;
-    nstress = femParams.nstress;
-    nisv    = femParams.nisv;
-    ndof    = femParams.ndof;
-    nel     = femParams.nel;
-    neldof  = femParams.neldof;
+    numips     = femParams.numips;
+    nstress    = femParams.nstress;
+    nisv       = femParams.nisv;
+    ndof       = femParams.ndof;
+    nel        = femParams.nel;
+    neldof     = femParams.neldof;
 
     // Time Parameters
     t          = femParams.t;
@@ -196,17 +195,9 @@ int main(int argc, char * argv[]) {
     strainrate = femParams.strainrate;
 
     //Damping
-    alphaM = femParams.alphaM;
-    
-    //FEM Mesh
-    coords.set_size(2,2);
-    coords(0,0) = 0.0;
-    coords(0,1) = h/2;
-    coords(1,0) = h/2;
-    coords(1,1) = h;
-    
-    params.set_size(10);
-    
+    alphaM     = femParams.alphaM;
+
+    params.set_size(11);
     params(0 ) = lambda;
     params(1 ) = mu;
     params(2 ) = rho;
@@ -217,11 +208,14 @@ int main(int argc, char * argv[]) {
     params(7 ) = Area;
     params(8 ) = h_DEM;
     params(9 ) = nel;
-    //params(10) = demParams.maxOverlap; 
-    //params(11) = demParams.youngsMod;
-    //params(12) = demParams.poisRatio;
-    //params(13) = demParams.timestep;
-    //params(14) = demParams.damping;
+    params(10) = neldof;
+    
+    //FEM Mesh
+    coords.set_size(2,2);
+    coords(0,0) = 0.0;
+    coords(0,1) = h/2;
+    coords(1,0) = h/2;
+    coords(1,1) = h;
 
     // LM array
     LM.set_size(2,2);
