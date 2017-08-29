@@ -198,7 +198,7 @@ int main(int argc, char * argv[]) {
     //Damping
     alphaM     = femParams.alphaM;
 
-    params.set_size(11);
+    params.set_size(12);
     params(0 ) = lambda;
     params(1 ) = mu;
     params(2 ) = rho;
@@ -210,9 +210,12 @@ int main(int argc, char * argv[]) {
     params(8 ) = h_DEM;
     params(9 ) = nel;
     params(10) = neldof;
+    params(11) = ndof;
 
-    createCoords(coords,params);
+    createCoords(coords,params,h);
+    createLM(LM,params);
     coords.print();
+    LM.print();
 
     exit(0);
     
@@ -223,12 +226,12 @@ int main(int argc, char * argv[]) {
     coords(1,0) = h/2;
     coords(1,1) = h;*/
 
-    // LM array
+/*    // LM array
     LM.set_size(2,2);
     LM(0,0) = 0;
     LM(0,1) = 1;
     LM(1,0) = 1;
-    LM(1,1) = 0;
+    LM(1,1) = 0;*/
     
     dispfun_time.zeros(nsteps);
     dispfun_disp.zeros(nsteps);
