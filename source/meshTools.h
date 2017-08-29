@@ -8,4 +8,6 @@
 
 #include "armadillo"
 
+using namespace arma;
+
 void createCoords(mat & coords, vec params);

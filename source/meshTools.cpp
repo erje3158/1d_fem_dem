@@ -9,6 +9,7 @@
 #include "meshTools.h"
 
 using namespace std;
+using namespace arma;
 
 void createCoords(mat & coords, vec params)
 {
