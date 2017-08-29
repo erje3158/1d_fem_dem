@@ -12,4 +12,4 @@ using namespace arma;
 
 void createCoords(mat & coords, vec params, double h);
 
-void createLM(mat & LM, vec params);
+void createLM(umat & LM, vec params);
