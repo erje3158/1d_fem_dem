@@ -7,11 +7,5 @@
 //
 
 #include "armadillo"
-#include "meshTools.h"
-
-using namespace std;
 
 void createCoords(mat & coords, vec params)
-{
-	coords.set_size(params(9),params(10));
-}
