@@ -6,7 +6,6 @@
 //  Copyright �� 2017 Erik Jensen. All rights reserved.
 //
 
-#include "armadillo"
 #include "meshTools.h"
 
 using namespace std;

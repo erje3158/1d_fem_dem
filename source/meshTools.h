@@ -8,4 +8,4 @@
 
 #include "armadillo"
 
-void createCoords(mat & coords, vec params)
+void createCoords(mat & coords, vec params);
