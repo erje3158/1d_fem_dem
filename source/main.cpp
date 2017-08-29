@@ -20,6 +20,7 @@
 
 #include "armadillo"
 #include "routines.h"
+#include "meshTools.h"
 
 #include "mpi.h"
 
