@@ -209,13 +209,18 @@ int main(int argc, char * argv[]) {
     params(8 ) = h_DEM;
     params(9 ) = nel;
     params(10) = neldof;
+
+    createCoords(coords,params);
+    coords.print();
+
+    exit(0);
     
-    //FEM Mesh
+    /*//FEM Mesh
     coords.set_size(2,2);
     coords(0,0) = 0.0;
     coords(0,1) = h/2;
     coords(1,0) = h/2;
-    coords(1,1) = h;
+    coords(1,1) = h;*/
 
     // LM array
     LM.set_size(2,2);
