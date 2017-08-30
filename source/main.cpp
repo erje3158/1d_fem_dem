@@ -212,10 +212,15 @@ int main(int argc, char * argv[]) {
     params(10) = neldof;
     params(11) = ndof;
 
-    createCoords(coords,params,h);
-    createLM(LM,params);
-    coords.print();
-    LM.print();
+    if (rank == 0) 
+    {
+        createCoords(coords,params,h);
+        createLM(LM,params);
+        coords.print();
+        LM.print();
+    }
+
+    MPI_Barrier(MPI_COMM_WORLD);
 
     exit(0);
     
