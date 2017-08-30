@@ -212,17 +212,8 @@ int main(int argc, char * argv[]) {
     params(10) = neldof;
     params(11) = ndof;
 
-    if (rank == 0) 
-    {
-        createCoords(coords,params,h);
-        createLM(LM,params);
-        coords.print();
-        LM.print();
-    }
-
-    MPI_Barrier(MPI_COMM_WORLD);
-
-    exit(0);
+    createCoords(coords,params,h);
+    createLM(LM,params);
     
     /*//FEM Mesh
     coords.set_size(2,2);
@@ -510,7 +501,7 @@ int main(int argc, char * argv[]) {
 
          MPI_Barrier(MPI_COMM_WORLD);
         
-         if(rank==0 && n%print_int==0) {
+        if(rank==0 && n%print_int==0) {
 			chdir(cCurrentPath);
     	    d_file.open("d.txt",ofstream::out | ofstream::app);
     	    v_file.open("v.txt",ofstream::out | ofstream::app);
@@ -521,17 +512,17 @@ int main(int argc, char * argv[]) {
     	    F_S_file.open("F_S.txt",ofstream::out | ofstream::app);
 
             d_file.precision(5);
-	    d_file.setf(ios::scientific);
+            d_file.setf(ios::scientific);
             v_file.precision(5);
-	    v_file.setf(ios::scientific);
+    	    v_file.setf(ios::scientific);
             a_file.precision(5);
-	    a_file.setf(ios::scientific);
+    	    a_file.setf(ios::scientific);
             stress_file.precision(5);
-	    stress_file.setf(ios::scientific);
+    	    stress_file.setf(ios::scientific);
             isv_file.precision(5);
-	    isv_file.setf(ios::scientific);
+    	    isv_file.setf(ios::scientific);
             F_S_file.precision(5);
-	    F_S_file.setf(ios::scientific);
+    	    F_S_file.setf(ios::scientific);
 	    
             dd.raw_print(d_file);
     	    v.raw_print(v_file);
