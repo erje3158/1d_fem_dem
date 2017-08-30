@@ -16,28 +16,37 @@ void createCoords(mat & coords, vec params, double h)
 
 /*  coords.set_size(8,2);
     coords(0,0) = 0.0;
-    coords(0,1) = h/8;
     coords(1,0) = h/8;
-    coords(1,1) = h/4;
     coords(2,0) = h/4;
-    coords(2,1) = 3*h/8;
     coords(3,0) = 3*h/8;
-    coords(3,1) = h/2;
     coords(4,0) = h/2;
-    coords(4,1) = 5*h/8;
     coords(5,0) = 5*h/8;
-    coords(5,1) = 3*h/4;
     coords(6,0) = 3*h/4;
-    coords(6,1) = 7*h/8;
     coords(7,0) = 7*h/8;
+    coords(0,1) = h/8;
+    coords(1,1) = h/4;
+    coords(2,1) = 3*h/8;
+    coords(3,1) = h/2;
+    coords(4,1) = 5*h/8;
+    coords(5,1) = 3*h/4;
+    coords(6,1) = 7*h/8;
     coords(7,1) = h;*/
 
 	coords.set_size(params(9),params(10));
 
-	coords(0,0) = 0.0;
-    coords(0,1) = h/2;
-    coords(1,0) = h/2;
-    coords(1,1) = h;
+	int dof = 0;
+
+	for (i = 0; i < params(10); i++)
+	{
+		for (j = 0; j < params(9); j++)
+		{
+			coords(j,i) = dof * h / params(9);
+			dof++
+		}
+		dof = 1;
+	}
+
+	coords(params(9)-1,params(10)-1) = 0;
 
 }
 
