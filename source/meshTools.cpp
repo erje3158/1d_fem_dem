@@ -46,8 +46,6 @@ void createCoords(mat & coords, vec params, double h)
 		dof = 1;
 	}
 
-	coords(params(9)-1,params(10)-1) = 0;
-
 }
 
 void createLM(umat & LM, vec params)
