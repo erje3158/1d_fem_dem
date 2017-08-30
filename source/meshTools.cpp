@@ -36,9 +36,9 @@ void createCoords(mat & coords, vec params, double h)
 
 	int dof = 0;
 
-	for (i = 0; i < params(10); i++)
+	for (int i = 0; i < params(10); i++)
 	{
-		for (j = 0; j < params(9); j++)
+		for (int j = 0; j < params(9); j++)
 		{
 			coords(j,i) = dof * h / params(9);
 			dof++
