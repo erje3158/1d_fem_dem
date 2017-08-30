@@ -67,9 +67,9 @@ void createLM(umat & LM, vec params)
 
 	int dof  = 0;
 
-	for (int i = 0, i < params(10), i++)
+	for (int i = 0; i < params(10); i++)
 	{
-		for (int j = 0, j < params(9), j++)
+		for (int j = 0; j < params(9); j++)
 		{
 			LM(i,j) = dof;
 			dof++;
