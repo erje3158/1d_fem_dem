@@ -358,7 +358,7 @@ int main(int argc, char * argv[]) {
 	}*/
 
     whichELIP(rank, el, ip);
-    printELIP(el, ip);
+    printELIP(rank, el, ip);
 	
     MPI_Barrier(MPI_COMM_WORLD);
 
