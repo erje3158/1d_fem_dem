@@ -59,6 +59,23 @@ void createG(mat & g, vec disp, vec params)
 
 }
 
+void printMesh(mat coords, umat LM, mat g)
+{
+	cout << endl << endl;
+ 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+  	cout << "SUMMARY OF MESH:"                          << endl;
+  	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+  	cout << endl;
+  	cout << "coords = " 								<< endl;
+  	coords.print();
+  	cout << "LM = " 									<< endl;
+  	LM.print();
+  	cout << "g = " 										<< endl;
+  	g.print();  	
+  	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << endl << endl << endl;
+}
+
 void whichELIP(int rank, int & el, int & ip)
 {
 /*	    //this is super hardcoded
@@ -131,11 +148,11 @@ void whichELIP(int rank, int & el, int & ip)
 	}
 }
 
-void printELIP(int el, int ip)
+void printELIP(int rank, int el, int ip)
 {
 
 	cout << endl;
-	cout << "el = " << el << " :: ip = " << ip;
+	cout << "rank = " << rank << " :: el = " << el << " :: ip = " << ip;
 	cout << endl;
 
 }

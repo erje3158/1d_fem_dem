@@ -16,6 +16,8 @@ void createLM(umat & LM, vec params);
 
 void createG(mat & g, vec disp, vec params);
 
+void printMesh(mat coords, umat LM, mat g);
+
 void whichELIP(int rank, int & el, int & ip);
 
-void printELIP(int el, int ip);
+void printELIP(int rank, int el, int ip);
