@@ -365,8 +365,8 @@ int main(int argc, char * argv[]) {
     if (rank == 0)
     {
         femParams.echoData();
-        demParams.echoData();\
-        g.print()
+        demParams.echoData();
+        g.print();
     }
 
     femParams.~femInput();
