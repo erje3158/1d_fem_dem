@@ -239,8 +239,7 @@ int main(int argc, char * argv[]) {
         dispfun_eps(ii)  = log(1.0+dispfun_disp(ii)/h);
     }
     
-    g.zeros(2,2);
-    g(1,1) = dispfun_disp(0);
+    createG(g, dispfun_disp, params);
     gd_n = 0.0;
     gd   = 0.0;
 
@@ -341,7 +340,7 @@ int main(int argc, char * argv[]) {
 
     MPI_Barrier(MPI_COMM_WORLD);
 
-    //this is super hardcoded
+/*    //this is super hardcoded
 	if (rank == 0) {
 		el = 0;
 		ip = 0;
@@ -356,19 +355,25 @@ int main(int argc, char * argv[]) {
 		ip = 1;
 	} else {
 		cout << "AAAAAHHHHHH WRONG!!!!!" << endl;
-	}
+	}*/
+
+    whichELIP(rank, el, ip);
+    printELIP(el, ip);
 	
     MPI_Barrier(MPI_COMM_WORLD);
 
     if (rank == 0)
     {
         femParams.echoData();
-        demParams.echoData();
+        demParams.echoData();\
+        g.print()
     }
 
     femParams.~femInput();
 
     MPI_Barrier(MPI_COMM_WORLD);
+
+    exit(0);
 
     for(n = 1; n <= nsteps; n++) {
     	if(rank == 0) {

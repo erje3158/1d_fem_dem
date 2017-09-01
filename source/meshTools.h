@@ -13,3 +13,7 @@ using namespace arma;
 void createCoords(mat & coords, vec params, double h);
 
 void createLM(umat & LM, vec params);
+
+void createG(mat & g, vec disp, vec params);
+
+void printELIP(int el, int ip);
