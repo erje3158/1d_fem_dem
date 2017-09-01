@@ -55,7 +55,7 @@ module list
 # --- EXECUTE JOB ---
 
 echo Simulation started at `date`
-mpiexec_mpt -np $NSLOTS ./hu_code ${INP}/input_boundary_file ${INP}/input_particle_file ${BIN}/qdelaunay . ${INP}/fem_input_test ${INP}/dem_input
+mpiexec_mpt -np $NSLOTS ./hu_code ${INP}/input_boundary_file ${INP}/input_particle_file ${BIN}/qdelaunay . ${INP}/fem_input_4el ${INP}/dem_input
 echo Simulation finished at `date`
 
 # --- CLEAN UP ---
