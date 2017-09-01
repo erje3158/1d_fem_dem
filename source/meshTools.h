@@ -16,4 +16,6 @@ void createLM(umat & LM, vec params);
 
 void createG(mat & g, vec disp, vec params);
 
+void whichELIP(int rank, int & el, int & ip);
+
 void printELIP(int el, int ip);
