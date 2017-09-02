@@ -214,20 +214,7 @@ int main(int argc, char * argv[]) {
 
     createCoords(coords,params,h);
     createLM(LM,params);
-    
-    /*//FEM Mesh
-    coords.set_size(2,2);
-    coords(0,0) = 0.0;
-    coords(0,1) = h/2;
-    coords(1,0) = h/2;
-    coords(1,1) = h;*/
-
-/*    // LM array
-    LM.set_size(2,2);
-    LM(0,0) = 0;
-    LM(0,1) = 1;
-    LM(1,0) = 1;
-    LM(1,1) = 0;*/
+    whichELIP(rank, el, ip);
     
     dispfun_time.zeros(nsteps);
     dispfun_disp.zeros(nsteps);
@@ -337,28 +324,6 @@ int main(int argc, char * argv[]) {
     	}
 
     }
-
-    MPI_Barrier(MPI_COMM_WORLD);
-
-/*    //this is super hardcoded
-	if (rank == 0) {
-		el = 0;
-		ip = 0;
-	} else if (rank == 1) {
-		el = 0;
-		ip = 1;
-	} else if (rank == 2) {
-		el = 1;
-		ip = 0;
-	} else if (rank == 3) {
-		el = 1;
-		ip = 1;
-	} else {
-		cout << "AAAAAHHHHHH WRONG!!!!!" << endl;
-	}*/
-
-    whichELIP(rank, el, ip);
-    printELIP(rank, el, ip);
 	
     MPI_Barrier(MPI_COMM_WORLD);
 
@@ -370,6 +335,8 @@ int main(int argc, char * argv[]) {
     }
 
     femParams.~femInput();
+
+    printELIP(rank, el, ip);
 
     MPI_Barrier(MPI_COMM_WORLD);
 

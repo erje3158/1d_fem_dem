@@ -68,68 +68,19 @@ void printMesh(mat coords, umat LM, mat g)
   	cout << endl;
   	cout << "coords = " 								<< endl;
   	coords.print();
+    cout << endl;
   	cout << "LM = " 									<< endl;
   	LM.print();
+  	cout << endl;
   	cout << "g = " 										<< endl;
-  	g.print();  	
+  	g.print();  
+  	cout << endl;	
   	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << endl << endl << endl;
 }
 
 void whichELIP(int rank, int & el, int & ip)
 {
-/*	    //this is super hardcoded
-	if (rank == 0) {
-		el = 0;
-		ip = 0;
-	} else if (rank == 1) {
-		el = 0;
-		ip = 1;
-	} else if (rank == 2) {
-		el = 1;
-		ip = 0;
-	} else if (rank == 3) {
-		el = 1;
-		ip = 1;
-	} else if (rank == 4) {
-		el = 2;
-		ip = 0;
-	} else if (rank == 5) {
-		el = 2;
-		ip = 1;
-	} else if (rank == 6) {
-		el = 3;
-		ip = 0;
-	} else if (rank == 7) {
-		el = 3;
-		ip = 1;
-	} else if (rank == 8) {
-		el = 4;
-		ip = 0;
-	} else if (rank == 9) {
-		el = 4;
-		ip = 1;
-	} else if (rank == 10) {
-		el = 5;
-		ip = 0;
-	} else if (rank == 11) {
-		el = 5;
-		ip = 1;
-	} else if (rank == 12) {
-		el = 6;
-		ip = 0;
-	} else if (rank == 13) {
-		el = 6;
-		ip = 1;
-	} else if (rank == 14) {
-		el = 7;
-		ip = 0;
-	} else if (rank == 15) {
-		el = 7;
-		ip = 1;
-	} else {
-		cout << "AAAAAHHHHHH WRONG!!!!!" << endl;
-	}*/
 
 	el = rank / 2;
 
@@ -150,7 +101,7 @@ void whichELIP(int rank, int & el, int & ip)
 
 void printELIP(int rank, int el, int ip)
 {
-
+	
 	cout << endl;
 	cout << "rank = " << rank << " :: el = " << el << " :: ip = " << ip;
 	cout << endl;
