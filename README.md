@@ -2,16 +2,16 @@
 * MPI/OpenMP Formulation
 * DEM - ellip3D, 600 particle assembly from Colorado Mason sand
 
-## Boundary Conditions:  
+## Boundary Conditions:
 ---> +----+----+----+----+----|  
 &nbsp;d(t) &emsp;&emsp;&emsp;&ensp; el &emsp; <--dof &emsp;&emsp;&ensp; 0  
 1. Applied strain rate from Split Hopkinson Pressure Bar Experiments (Dr. Hongbing Lu, UT Dallas).
 2. Other side fixed in space.
 
-*Initial Conditions:*  
+## Initial Conditions:
 d(0) = v(0) = a(0) for all degrees of freedom
 
-*Code Overview:*  
+## Code Overview:
 ./bin - contains pre-compiled programs required for ellip3D  
 ./include - hooks for armadillo library required for FEM  
 ./inputs - input files for FEM and DEM  
@@ -19,8 +19,8 @@ d(0) = v(0) = a(0) for all degrees of freedom
 ./outputs - simulation outputs populated from PBS submissions  
 ./source - source code
 
-*Input Files:*  
-Four input files are required to run the code all found in ./inputs:  
+## Input Files:
+Four input files are required to run the code all found in ./inputs:
 * dem_input - input parameters for the ellip3D  
 * fem_input - input parameters for the FEM code  
 * input_particle_file - provides the initial assembly of DEM particles  
