@@ -11,6 +11,7 @@ d(0) = v(0) = a(0) for all degrees of freedom
 
 *Code Overview:*
 ./bin     - contains pre-compiled programs required for ellip3D
+
 ./include - hooks for armadillo library required for FEM
 ./inputs  - input files for FEM and DEM
 ./lib     - aramdillo library files
