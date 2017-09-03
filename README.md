@@ -46,9 +46,9 @@ lambda - elasticity paramter for the FEM (not used)
 mu - elasticity parameter for the FEM (not used)  
 rho - density of the FEM (not used)  
 
-*Output Files:*
+## Output Files:
 
-*Code Compilation:*
+## Code Compilation:
 
-*Code Submission:*
+## Code Submission:
 
