@@ -2,7 +2,9 @@
 * MPI/OpenMP Formulation
 * DEM - ellip3D, 600 particle assembly from Colorado Mason sand
 
-*Boundary Conditions:*
+*Boundary Conditions:*  
+---> +----+----+----+----+----|  
+d(t)        el    <--dof      0  
 1. Applied strain rate from Split Hopkinson Pressure Bar Experiments (Dr. Hongbing Lu, UT Dallas).
 2. Other side fixed in space.
 
