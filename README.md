@@ -27,8 +27,18 @@ Four input files are required to run the code all found in ./inputs:
 * input_boundary_file - provides the initial location of the DEM assembly boundarys
 
 ### _dem_input_:
+$Particle Overlap  
+Maximum Overlap - overlap over which the force-displacement relationship is allowed to increase during particle-to-particle contact
 
+$DEM Constitutive  
+Young's Modulus - elasticity parameter for the DEM particles  
+Poisson's Ratio - elasticity parameter for the DEM particles
 
+$Time Paramters  
+dt - DEM timestep
+
+$Particle Contact  
+Damping - Interparticle damping ratio
 
 *Output Files:*
 
