@@ -4,7 +4,7 @@
 
 *Boundary Conditions:*  
 ---> +----+----+----+----+----|  
-&nbsp;d(t) &emsp;&emsp;&emsp;&ensp; el &emsp; <--dof &emsp;&emsp;&nbsp; 0  
+&nbsp;d(t) &emsp;&emsp;&emsp;&ensp; el &emsp; <--dof &emsp;&emsp;&ensp; 0  
 1. Applied strain rate from Split Hopkinson Pressure Bar Experiments (Dr. Hongbing Lu, UT Dallas).
 2. Other side fixed in space.
 
@@ -12,19 +12,19 @@
 d(0) = v(0) = a(0) for all degrees of freedom
 
 *Code Overview:*  
-./bin &emsp;   - contains pre-compiled programs required for ellip3D  
-./include      - hooks for armadillo library required for FEM  
-./inputs &nbsp;- input files for FEM and DEM  
-./lib &emsp;   - aramdillo library files  
-./outputs      - simulation outputs populated from PBS submissions  
-./source &nbsp;- source code
+./bin - contains pre-compiled programs required for ellip3D  
+./include - hooks for armadillo library required for FEM  
+./inputs - input files for FEM and DEM  
+./lib - aramdillo library files  
+./outputs - simulation outputs populated from PBS submissions  
+./source - source code
 
 *Input Files:*  
 Four input files are required to run the code all found in ./inputs:  
-dem_input &emsp;&emsp;&ensp;- input parameters for the ellip3D  
-fem_input &emsp;&emsp;&ensp;- input parameters for the FEM code  
-input_particle_file         - provides the initial assembly of DEM particles  
-input_boundary_file         - provides the initial location of the DEM assembly boundarys
+dem_input - input parameters for the ellip3D  
+fem_input - input parameters for the FEM code  
+input_particle_file - provides the initial assembly of DEM particles  
+input_boundary_file - provides the initial location of the DEM assembly boundarys
 
 *Output Files:*
 
