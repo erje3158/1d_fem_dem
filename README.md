@@ -4,7 +4,7 @@
 
 *Boundary Conditions:*  
 ---> +----+----+----+----+----|  
-d(t) &emsp;&emsp;&emsp;&ensp;&nbsp; el &emsp; <--dof &emsp;&emsp; 0  
+d(t) &emsp;&emsp;&emsp;&ensp;&nbsp; el &emsp; <--dof &emsp;&emsp;&ensp; 0  
 1. Applied strain rate from Split Hopkinson Pressure Bar Experiments (Dr. Hongbing Lu, UT Dallas).
 2. Other side fixed in space.
 
@@ -19,7 +19,12 @@ d(0) = v(0) = a(0) for all degrees of freedom
 ./outputs - simulation outputs populated from PBS submissions  
 ./source  - source code
 
-*Input Files:*
+*Input Files:*  
+Four input files are required to run the code all found in ./inputs:  
+dem_input           - input parameters for the ellip3D  
+fem_input           - input parameters for the FEM code  
+input_particle_file - provides the initial assembly of DEM particles  
+input_boundary_file - provides the initial location of the DEM assembly boundarys
 
 *Output Files:*
 
