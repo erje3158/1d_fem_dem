@@ -1,8 +1,8 @@
-**1D Uniaxial Finite Strain, FEM-DEM Heirarchical Multiscale Modeling Code**
+#1D Uniaxial Finite Strain, FEM-DEM Heirarchical Multiscale Modeling Code
 * MPI/OpenMP Formulation
 * DEM - ellip3D, 600 particle assembly from Colorado Mason sand
 
-*Boundary Conditions:*  
+##Boundary Conditions:  
 ---> +----+----+----+----+----|  
 &nbsp;d(t) &emsp;&emsp;&emsp;&ensp; el &emsp; <--dof &emsp;&emsp;&ensp; 0  
 1. Applied strain rate from Split Hopkinson Pressure Bar Experiments (Dr. Hongbing Lu, UT Dallas).
@@ -21,10 +21,14 @@ d(0) = v(0) = a(0) for all degrees of freedom
 
 *Input Files:*  
 Four input files are required to run the code all found in ./inputs:  
-dem_input - input parameters for the ellip3D  
-fem_input - input parameters for the FEM code  
-input_particle_file - provides the initial assembly of DEM particles  
-input_boundary_file - provides the initial location of the DEM assembly boundarys
+* dem_input - input parameters for the ellip3D  
+* fem_input - input parameters for the FEM code  
+* input_particle_file - provides the initial assembly of DEM particles  
+* input_boundary_file - provides the initial location of the DEM assembly boundarys
+
+
+
+
 
 *Output Files:*
 
