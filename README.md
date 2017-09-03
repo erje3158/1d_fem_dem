@@ -4,7 +4,7 @@
 
 *Boundary Conditions:*  
 ---> +----+----+----+----+----|  
-d(t) &emsp; el &emsp; <--dof &emsp; 0  
+d(t) &emsp;&emsp; el &emsp; <--dof &emsp; 0  
 1. Applied strain rate from Split Hopkinson Pressure Bar Experiments (Dr. Hongbing Lu, UT Dallas).
 2. Other side fixed in space.
 
