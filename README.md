@@ -26,7 +26,7 @@ Four input files are required to run the code all found in ./inputs:
 * input_particle_file - provides the initial assembly of DEM particles  
 * input_boundary_file - provides the initial location of the DEM assembly boundarys
 
-### _dem_input_:
+### _dem_input_: Template and Variable Definitions
 $Particle Overlap  
 Maximum Overlap - overlap over which the force-displacement relationship is allowed to increase during particle-to-particle contact
 
@@ -39,6 +39,12 @@ dt - DEM timestep
 
 $Particle Contact  
 Damping - Interparticle damping ratio
+
+### _fem_input_: Template and Variable Definitions
+$FEM Constitutive  
+lambda - elasticity paramter for the FEM (not used)  
+mu - elasticity parameter for the FEM (not used)  
+rho - density of the FEM (not used)  
 
 *Output Files:*
 
