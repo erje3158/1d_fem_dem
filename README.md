@@ -1,6 +1,7 @@
 # 1D Uniaxial Finite Strain, FEM-DEM Heirarchical Multiscale Modeling Code
 * MPI/OpenMP Formulation
 * DEM - ellip3D, 600 particle assembly from Colorado Mason sand
+* Simulates Split Hopkinson Pressure Bar experiments
 
 ## Boundary Conditions:
 ---> +----+----+----+----+----|  
@@ -80,7 +81,7 @@ $Mass Damping
 alpha - mass proportional damping value  
 
 ## Output Files:
-
+Output files will be generated in ./outputs in the directory ./outputs/<PBS Name>/<Job Number>. "PBS Name" is the name of the simulation specified in the PBS script, and "Job Number" is the job number assigned by the PBS queue.
 
 ## Code Compilation:
 
