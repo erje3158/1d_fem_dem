@@ -73,13 +73,14 @@ iterations - number of DEM timesteps per global timestep
 print - number of DEM snapshots per global timestep  
 time total - end time of the simlation  
 
-$Strain Rate
+$Strain Rate  
 rate - strain rate of the split Hopkinson pressure bar experiment  
 
-$Mass Damping
+$Mass Damping  
 alpha - mass proportional damping value  
 
 ## Output Files:
+
 
 ## Code Compilation:
 
