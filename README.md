@@ -81,7 +81,7 @@ $Mass Damping
 alpha - mass proportional damping value  
 
 ## Output Files:
-Output files will be generated in ./outputs in the directory ./outputs/<PBS Name>/<Job Number>. "PBS Name" is the name of the simulation specified in the PBS script, and "Job Number" is the job number assigned by the PBS queue.
+Output files will be generated in ./outputs in the directory ./outputs/\<PBS Name\>/<Job Number>. "PBS Name" is the name of the simulation specified in the PBS script, and "Job Number" is the job number assigned by the PBS queue.
 
 ## Code Compilation:
 
