@@ -85,10 +85,67 @@ Output files will be generated in ./outputs in the directory ./outputs/\<PBS Nam
 
 ## Code Compilation:
 To compile the code, "cd" into ./source, and run ./Make_Script.sh. "Make_Script.sh" takes the platform as an argument. Current platforms are "topaz" and "excalibur":  
-./Make_Script.sh \<platform\>
+./source/Make_Script.sh \<platform\>
 
 ## Code Submission:
-To submit the code to the PBS queue system of the specified platform, run ./Submit_Script.sh. "Submit_Script.sh" takes two arguments: the platform and the name of the PBS script. Curent platforms are "topaz" and "excalibur", and the submit scripts are created and stored in ./source/\<platform\>/. Each submit script needs to specify the queue, walltime, job code, and location of each input file. 
+To submit the code to the PBS queue system of the specified platform, run ./Submit_Script.sh. "Submit_Script.sh" takes two arguments: the platform and the name of the PBS script. Curent platforms are "topaz" and "excalibur", and the PBS scripts are created and stored in ./source/\<platform\>/. Each PBS script needs to specify the queue, number of nodes, walltime, job code, your email, and location of each input file. 
+./Submit_Script.sh \<platform> \<PBS Script\>  
 
-### _Example Submit Script_:
+### _Example PBS Script_:
+#!/bin/bash  
+#PBS -N \<PBS Name\>  
+#PBS -l select=\<Number of Nodes\>:ncpus=32:mpiprocs=1  
+#PBS -l walltime=\<walltime\>  
+#PBS -l place=scatter:excl  
+#PBS -q \<queue\>  
+#PBS -j oe  
+#PBS -V  
+#PBS -A \<job code\>  
+#PBS -m be  
+#PBS -M \<email\>  
 
+# --- USER INPUT ---  
+export PREFIX=$PBS_JOBNAME #PBS_JOBNAME is the name of the job that's been submitted  
+export LOCAL_DIR=$PBS_O_WORKDIR #the directory where the script was run  
+export TMPD=$WORKDIR #my personal work directory on excalibur - data here is temp (15 days after run done)  
+JOBNUM=`echo ${PBS_JOBID} | cut -d "." -f 1` #create variable out of job number PBS assigns this job  
+
+export NSLOTS=`wc -l $PBS_NODEFILE | cut -f1 -d" "`  
+echo NSLOTS = $NSLOTS  
+
+export OMP_NUM_THREADS=32  
+echo OMP_NUM_THREADS = $OMP_NUM_THREADS  
+
+# --- HARDCODED DIRECTORIES ---  
+
+export EXE=${LOCAL_DIR}/source  
+export BIN=${LOCAL_DIR}/bin  
+export LIB=${LOCAL_DIR}/lib  
+export INP=${LOCAL_DIR}/inputs  
+export OUT=${LOCAL_DIR}/outputs  
+
+# --- WORKING DIRECTORY ---  
+
+export TMP_DIR=${TMPD}/${JOBNUM} #create directory to run the job in $WORKDIR/$JOBNUM  
+mkdir -p ${TMP_DIR}  
+mkdir -p ${OUT}/${PREFIX}/${JOBNUM}  
+cp -r ${EXE}/hu_code ${TMP_DIR} #copies everything from the place this script is run into the work dir  
+cd ${TMP_DIR}  
+#ln -s ${TMP_DIR}/ ${OUT}/${JOBNUM} #create link to the work dir  
+pwd  
+
+# --- LD_LIBRARY_PATH ---  
+
+export LD_LIBRARY_PATH="${LIB}:$LD_LIBRARY_PATH"  
+echo $LD_LIBRARY_PATH  
+
+# --- MACHINE SPECIFIC ---  
+module swap PrgEnv-intel PrgEnv-gnu  
+module list  
+
+echo Simulation started at `date`  
+aprun -n $NSLOTS ./hu_code ${INP}/input_boundary_file ${INP}/input_particle_file ${BIN}/qdelaunay . ${INP}/fem_input_2el ${INP}/dem_input  
+echo Simulation finished at `date`  
+
+# --- CLEAN UP ---  
+ln -s ${TMP_DIR} ${OUT}/${PREFIX}/${JOBNUM}/${JOBNUM} #create link to the work dir  
