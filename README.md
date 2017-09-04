@@ -88,4 +88,7 @@ To compile the code, "cd" into ./source, and run ./Make_Script.sh. "Make_Script.
 ./Make_Script.sh \<platform\>
 
 ## Code Submission:
+To submit the code to the PBS queue system of the specified platform, run ./Submit_Script.sh. "Submit_Script.sh" takes two arguments: the platform and the name of the PBS script. Curent platforms are "topaz" and "excalibur", and the submit scripts are created and stored in ./source/\<platform\>/. Each submit script needs to specify the queue, walltime, job code, and location of each input file. 
+
+### _Example Submit Script_:
 
