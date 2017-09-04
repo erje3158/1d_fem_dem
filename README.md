@@ -46,6 +46,39 @@ lambda - elasticity paramter for the FEM (not used)
 mu - elasticity parameter for the FEM (not used)  
 rho - density of the FEM (not used)  
 
+$Gravity  
+gravity - acceleration due to gravity  
+
+$FEM Geometry  
+diameter - Diameter of the specimen  
+L/D - Ratio of the length to the diameter of the specimen  
+
+$DEM Geometry  
+length - length of the DEM assembly  
+width - width of the DEM assembly  
+height - height of the DEM assembly  
+
+$FEM Constants  
+numips - number of integration points per element  
+nstress - number of saved stress and strain values  
+nisv - number of internal state variables  
+ndof - number of global degrees of freedom  
+nel - number of elements  
+neldof - number of element degrees of freedom  
+
+$Time Parameters  
+t0 - start time of the simulation  
+dt - global timestep  
+iterations - number of DEM timesteps per global timestep  
+print - number of DEM snapshots per global timestep  
+time total - end time of the simlation  
+
+$Strain Rate
+rate - strain rate of the split Hopkinson pressure bar experiment  
+
+$Mass Damping
+alpha - mass proportional damping value  
+
 ## Output Files:
 
 ## Code Compilation:
