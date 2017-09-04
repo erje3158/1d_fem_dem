@@ -88,7 +88,7 @@ To compile the code, "cd" into ./source, and run ./Make_Script.sh. "Make_Script.
 ./source/Make_Script.sh \<platform\>
 
 ## Code Submission:
-To submit the code to the PBS queue system of the specified platform, run ./Submit_Script.sh. "Submit_Script.sh" takes two arguments: the platform and the name of the PBS script. Curent platforms are "topaz" and "excalibur", and the PBS scripts are created and stored in ./source/\<platform\>/. Each PBS script needs to specify the queue, number of nodes, walltime, job code, your email, and location of each input file. 
+To submit the code to the PBS queue system of the specified platform, run ./Submit_Script.sh. "Submit_Script.sh" takes two arguments: the platform and the name of the PBS script. Curent platforms are "topaz" and "excalibur", and the PBS scripts are created and stored in ./source/\<platform\>/. Each PBS script needs to specify the queue, number of nodes, walltime, job code, your email, and location of each input file.  
 ./Submit_Script.sh \<platform> \<PBS Script\>  
 
 ### _Example PBS Script_:
@@ -104,7 +104,7 @@ To submit the code to the PBS queue system of the specified platform, run ./Subm
 #PBS -m be  
 #PBS -M \<email\>  
 
-# --- USER INPUT ---  
+#--- USER INPUT ---  
 export PREFIX=$PBS_JOBNAME #PBS_JOBNAME is the name of the job that's been submitted  
 export LOCAL_DIR=$PBS_O_WORKDIR #the directory where the script was run  
 export TMPD=$WORKDIR #my personal work directory on excalibur - data here is temp (15 days after run done)  
@@ -116,7 +116,7 @@ echo NSLOTS = $NSLOTS
 export OMP_NUM_THREADS=32  
 echo OMP_NUM_THREADS = $OMP_NUM_THREADS  
 
-# --- HARDCODED DIRECTORIES ---  
+#--- HARDCODED DIRECTORIES ---  
 
 export EXE=${LOCAL_DIR}/source  
 export BIN=${LOCAL_DIR}/bin  
@@ -124,7 +124,7 @@ export LIB=${LOCAL_DIR}/lib
 export INP=${LOCAL_DIR}/inputs  
 export OUT=${LOCAL_DIR}/outputs  
 
-# --- WORKING DIRECTORY ---  
+#--- WORKING DIRECTORY ---  
 
 export TMP_DIR=${TMPD}/${JOBNUM} #create directory to run the job in $WORKDIR/$JOBNUM  
 mkdir -p ${TMP_DIR}  
@@ -134,12 +134,12 @@ cd ${TMP_DIR}
 #ln -s ${TMP_DIR}/ ${OUT}/${JOBNUM} #create link to the work dir  
 pwd  
 
-# --- LD_LIBRARY_PATH ---  
+#--- LD_LIBRARY_PATH ---  
 
 export LD_LIBRARY_PATH="${LIB}:$LD_LIBRARY_PATH"  
 echo $LD_LIBRARY_PATH  
 
-# --- MACHINE SPECIFIC ---  
+#--- MACHINE SPECIFIC ---  
 module swap PrgEnv-intel PrgEnv-gnu  
 module list  
 
@@ -147,5 +147,5 @@ echo Simulation started at `date`
 aprun -n $NSLOTS ./hu_code ${INP}/input_boundary_file ${INP}/input_particle_file ${BIN}/qdelaunay . ${INP}/fem_input_2el ${INP}/dem_input  
 echo Simulation finished at `date`  
 
-# --- CLEAN UP ---  
+#--- CLEAN UP ---  
 ln -s ${TMP_DIR} ${OUT}/${PREFIX}/${JOBNUM}/${JOBNUM} #create link to the work dir  
