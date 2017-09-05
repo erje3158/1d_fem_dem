@@ -336,11 +336,11 @@ int main(int argc, char * argv[]) {
 
     femParams.~femInput();
 
+    MPI_Barrier(MPI_COMM_WORLD);
+
     printELIP(rank, el, ip);
 
     MPI_Barrier(MPI_COMM_WORLD);
-
-    exit(0);
 
     for(n = 1; n <= nsteps; n++) {
     	if(rank == 0) {

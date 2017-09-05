@@ -46,8 +46,12 @@ if [ "$#" = 1 ]
 			rm Makefile
 
 	else
-		echo "Need to specify recognized machine: excalibur or topaz"
+		echo "Don't recognize that platform..."
+		echo "Need to specify recognized platform: excalibur or topaz"
+		echo "./Make_Script.sh <platform>"
 	fi
 else
-	echo "Incorrect number of arguments"
+	echo "Incorrect number of arguments - Need to specify the machine where the code is being compiled."
+	echo "./Make_Script.sh <platform>"
+	echo "Current platforms: excalibur, topaz"
 fi
