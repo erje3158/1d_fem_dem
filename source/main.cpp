@@ -220,7 +220,7 @@ int main(int argc, char * argv[]) {
     dispfun_disp.zeros(nsteps);
     dispfun_eps.zeros(nsteps);
     
-    for(ii = 1; ii <= nsteps; ii++) {
+    for(ii = 1; ii < nsteps; ii++) {
         dispfun_time(ii) = (ii-1.0) * time_tot/double(nsteps);
         dispfun_disp(ii) = -h * (exp(strainrate * dispfun_time(ii))-1.0);
         dispfun_eps(ii)  = log(1.0+dispfun_disp(ii)/h);
