@@ -61,8 +61,8 @@ int main(int argc, char * argv[]) {
     vec temp;
     vec del_a, Delta_a;
     
-    rowvec d_last, v_last, a_last;
-    rowvec d_pred, v_pred;
+    vec d_last, v_last, a_last;
+    vec d_pred, v_pred;
     
     umat LM;
     
@@ -387,8 +387,8 @@ int main(int argc, char * argv[]) {
         F_S.zeros(ndof);
         K.zeros(ndof,ndof);
         
-        dd = d_pred.t();
-        v  = v_pred.t();
+        dd = d_pred;
+        v  = v_pred;
             
         d_el_last.zeros(nel,neldof);
 
