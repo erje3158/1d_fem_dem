@@ -357,10 +357,14 @@ int main(int argc, char * argv[]) {
     	
         t = t + dt;
 
+        cout << "Here 1" << endl;
+
         createG(g_n, dispfun_disp, params, n-1);
 /*        gd_n = gd;
         g_n.zeros(2,2);
         g_n(1,1) = gd_n;*/
+
+        cout << "Here 2" << endl;
 
         if(t < t_ramp) {
             tract = traction_max * (t/t_ramp);
@@ -373,6 +377,8 @@ int main(int argc, char * argv[]) {
 /*        gd = dispfun_disp(n-1);
         g.zeros(2,2);
         g(1,1) = gd;*/
+
+        cout << "Here 3" << endl;
         
         F_F = tract*Area;
         
