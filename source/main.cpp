@@ -225,12 +225,6 @@ int main(int argc, char * argv[]) {
         dispfun_disp(ii) = -h * (exp(strainrate * dispfun_time(ii))-1.0);
         dispfun_eps(ii)  = log(1.0+dispfun_disp(ii)/h);
     }
-
-/*    for(ii = 1; ii < nsteps; ii++) {
-        dispfun_time(ii) = (ii-1.0) * time_tot/double(nsteps);
-        dispfun_disp(ii) = -h * (exp(strainrate * dispfun_time(ii))-1.0);
-        dispfun_eps(ii)  = log(1.0+dispfun_disp(ii)/h);
-    }*/
     
     createG(g, dispfun_disp, params, 0);
     gd_n = 0.0;
@@ -342,10 +336,6 @@ int main(int argc, char * argv[]) {
 
     femParams.~femInput();
 
-    //MPI_Barrier(MPI_COMM_WORLD);
-
-    //printELIP(rank, el, ip);
-
     MPI_Barrier(MPI_COMM_WORLD);
 
     for(n = 1; n <= nsteps; n++) {
@@ -358,9 +348,6 @@ int main(int argc, char * argv[]) {
         t = t + dt;
 
         createG(g_n, dispfun_disp, params, n-1);
-/*        gd_n = gd;
-        g_n.zeros(2,2);
-        g_n(1,1) = gd_n;*/
 
         if(t < t_ramp) {
             tract = traction_max * (t/t_ramp);
@@ -370,9 +357,6 @@ int main(int argc, char * argv[]) {
         }
         
         createG(g, dispfun_disp, params, n);
-/*        gd = dispfun_disp(n-1);
-        g.zeros(2,2);
-        g(1,1) = gd;*/
         
         F_F = tract*Area;
         
@@ -392,8 +376,6 @@ int main(int argc, char * argv[]) {
             
         d_el_last.zeros(nel,neldof);
 
-        cout << "Here 1" << endl;
-
         temp = conv_to<vec>::from(LM.col(el));
         for(ii = 0; ii < neldof; ii++) {
             I = temp(ii);
@@ -406,8 +388,6 @@ int main(int argc, char * argv[]) {
                 d_el_last(el,ii) = g_n(ii,el);
             }
         }
-
-        cout << "Here 2" << endl;
 
         if (n%print_int==0) {
             n_print++;
