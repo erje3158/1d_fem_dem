@@ -51,11 +51,11 @@ void createLM(umat & LM, vec params)
 	LM(params(10)-1,params(9)-1) = 0;
 }
 
-void createG(mat & g, vec disp, vec params)
+void createG(mat & g, vec disp, vec params, int n)
 {
 
 	g.zeros(params(10),params(9));
-	g(params(10)-1,params(9)-1) = disp(0);
+	g(params(10)-1,params(9)-1) = disp(n);
 
 }
 

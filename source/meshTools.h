@@ -14,7 +14,7 @@ void createCoords(mat & coords, vec params, double h);
 
 void createLM(umat & LM, vec params);
 
-void createG(mat & g, vec disp, vec params);
+void createG(mat & g, vec disp, vec params, int n);
 
 void printMesh(mat coords, umat LM, mat g);
 

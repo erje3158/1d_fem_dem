@@ -220,13 +220,19 @@ int main(int argc, char * argv[]) {
     dispfun_disp.zeros(nsteps);
     dispfun_eps.zeros(nsteps);
     
-    for(ii = 1; ii < nsteps; ii++) {
+    for(ii = 1; ii <= nsteps; ii++) {
         dispfun_time(ii) = (ii-1.0) * time_tot/double(nsteps);
         dispfun_disp(ii) = -h * (exp(strainrate * dispfun_time(ii))-1.0);
         dispfun_eps(ii)  = log(1.0+dispfun_disp(ii)/h);
     }
+
+/*    for(ii = 1; ii < nsteps; ii++) {
+        dispfun_time(ii) = (ii-1.0) * time_tot/double(nsteps);
+        dispfun_disp(ii) = -h * (exp(strainrate * dispfun_time(ii))-1.0);
+        dispfun_eps(ii)  = log(1.0+dispfun_disp(ii)/h);
+    }*/
     
-    createG(g, dispfun_disp, params);
+    createG(g, dispfun_disp, params, 0);
     gd_n = 0.0;
     gd   = 0.0;
 
@@ -336,9 +342,9 @@ int main(int argc, char * argv[]) {
 
     femParams.~femInput();
 
-    MPI_Barrier(MPI_COMM_WORLD);
+    //MPI_Barrier(MPI_COMM_WORLD);
 
-    printELIP(rank, el, ip);
+    //printELIP(rank, el, ip);
 
     MPI_Barrier(MPI_COMM_WORLD);
 
@@ -350,9 +356,12 @@ int main(int argc, char * argv[]) {
     	MPI_Barrier(MPI_COMM_WORLD);
     	
         t = t + dt;
-        gd_n = gd;
+
+        createG(g_n, dispfun_disp, params, n-1);
+/*        gd_n = gd;
         g_n.zeros(2,2);
-        g_n(1,1) = gd_n;
+        g_n(1,1) = gd_n;*/
+
         if(t < t_ramp) {
             tract = traction_max * (t/t_ramp);
         }
@@ -360,9 +369,10 @@ int main(int argc, char * argv[]) {
             tract = traction_max;
         }
         
-        gd = dispfun_disp(n-1);
+        createG(g, dispfun_disp, params, n);
+/*        gd = dispfun_disp(n-1);
         g.zeros(2,2);
-        g(1,1) = gd;
+        g(1,1) = gd;*/
         
         F_F = tract*Area;
         
