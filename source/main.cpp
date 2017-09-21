@@ -21,6 +21,7 @@
 #include "armadillo"
 #include "routines.h"
 #include "meshTools.h"
+#include "dispFunctions.h"
 
 #include "mpi.h"
 
