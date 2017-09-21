@@ -219,15 +219,25 @@ int main(int argc, char * argv[]) {
 
     if (femParams.whichDisp == 1)
     {
+    	cout << "HERE 1a" << endl;
     	finiteAppliedDisp(dispfun_time, dispfun_disp, dispfun_eps, nsteps, time_tot, strainrate, h);
+    	cout << "HERE 2a" << endl;
+
     } else if (femParams.whichDisp == 2)
     {
+    	cout << "HERE 1b" << endl;
     	shpbAppliedDisp(dispfun_time, dispfun_disp, dispfun_eps, nsteps, time_tot, strainrate, h);
+    	cout << "HERE 2b" << endl;
+
     } else 
     {
     	cout << "ERROR: NO SPECIFICED DISPLACEMENT" << endl;
     	exit(0);
     }
+
+    cout << "time = " << dispfun_time(5) << endl;
+    cout << "disp = " << dispfun_disp(5) << endl;
+    cout << "eps = " << dispfun_eps(5) << endl;
     
     createG(g, dispfun_disp, params, 0);
     gd_n = 0.0;
