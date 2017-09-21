@@ -13,15 +13,24 @@ using namespace arma;
 
 void finiteAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot, double strainrate, double h)
 {
+	cout << "HERE 1a" << endl;
     time.zeros(nsteps);
     disp.zeros(nsteps);
     eps.zeros(nsteps);
+    cout << "HERE 2a" << endl;
     
     for(int ii = 1; ii < nsteps; ii++) {
         time(ii) = (ii-1.0) * time_tot/double(nsteps);
         disp(ii) = -h * (exp(strainrate * time(ii))-1.0);
         eps(ii)  = log(1.0 + disp(ii)/h);
+        if (ii==5)
+        {
+        	cout << "time = " << time(5) << endl;
+    		cout << "disp = " << disp(5) << endl;
+    		cout << "eps = " << eps(5) << endl;
+        }
     }
+    cout << "HERE 4a" << endl;
 }
 
 void shpbAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot, double strainrate, double h)
@@ -34,6 +43,8 @@ void shpbAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot
     time_update.zeros(nsteps);
 
     int ll = 0;
+
+    cout << "HERE 2a" << endl;
 
     for(int ii = 1; ii < nsteps; ii++) {
         time(ii) = (ii-1.0) * time_tot/double(nsteps);
@@ -51,4 +62,5 @@ void shpbAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot
 			eps(ii) = eps(ii-1);
 		}
     }
+    cout << "HERE 2b" << endl;
 }

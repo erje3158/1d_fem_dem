@@ -219,15 +219,11 @@ int main(int argc, char * argv[]) {
 
     if (femParams.whichDisp == 1)
     {
-    	cout << "HERE 1a" << endl;
     	finiteAppliedDisp(dispfun_time, dispfun_disp, dispfun_eps, nsteps, time_tot, strainrate, h);
-    	cout << "HERE 2a" << endl;
 
     } else if (femParams.whichDisp == 2)
     {
-    	cout << "HERE 1b" << endl;
     	shpbAppliedDisp(dispfun_time, dispfun_disp, dispfun_eps, nsteps, time_tot, strainrate, h);
-    	cout << "HERE 2b" << endl;
 
     } else 
     {
