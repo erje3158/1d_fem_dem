@@ -219,7 +219,7 @@ int main(int argc, char * argv[]) {
 
     if (femParams.whichDisp == 1)
     {
-    	finiteAppliedDisp(dispfun_time, dispfun_disp, dispfun_eps, nsteps, time_tot, strainrate);
+    	finiteAppliedDisp(dispfun_time, dispfun_disp, dispfun_eps, nsteps, time_tot, strainrate, h);
     } else if (femParams.whichDisp == 2)
     {
     	shpbAppliedDisp();
