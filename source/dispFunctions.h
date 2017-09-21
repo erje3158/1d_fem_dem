@@ -12,4 +12,4 @@ using namespace arma;
 
 void finiteAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot, double strainrate, double h);	
 
-void shpbAppliedDisp();
+void shpbAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot, double strainrate, double h);

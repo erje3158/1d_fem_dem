@@ -47,7 +47,7 @@ void femInput::readData(const char * inputFile)
       if ( line == "$Strain Rate"        ) { input >> this->strainrate ;}
       if ( line == "$Mass Damping"       ) { input >> this->alphaM     ;}
       if ( line == "$Finite Applied Disp") { this->whichDisp = 1       ;}
-      if ( line == "$SHPB Applied Disp  ") { this->whichDisp = 2       ;}
+      if ( line == "$SHPB Applied Disp"  ) { this->whichDisp = 2       ;}
     }
   input.close();
 }

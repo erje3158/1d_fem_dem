@@ -222,7 +222,7 @@ int main(int argc, char * argv[]) {
     	finiteAppliedDisp(dispfun_time, dispfun_disp, dispfun_eps, nsteps, time_tot, strainrate, h);
     } else if (femParams.whichDisp == 2)
     {
-    	shpbAppliedDisp();
+    	shpbAppliedDisp(dispfun_time, dispfun_disp, dispfun_eps, nsteps, time_tot, strainrate, h);
     } else 
     {
     	cout << "ERROR: NO SPECIFICED DISPLACEMENT" << endl;
