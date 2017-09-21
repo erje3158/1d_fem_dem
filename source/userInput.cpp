@@ -24,28 +24,30 @@ void femInput::readData(const char * inputFile)
   string line; ifstream input(inputFile);
   while ( getline(input,line) )
     {
-      if ( line == "$FEM Constitutive"  ) { input >> this->lambda     ;
-                                            input >> this->mu         ;
-                                            input >> this->rho        ;}
-      if ( line == "$Gravity"           ) { input >> this->grav       ;}
-      if ( line == "$FEM Geometry"      ) { input >> this->d          ;
-                                            input >> this->LDratio    ;}
-      if ( line == "$DEM Geometry"      ) { input >> this->h_DEM      ;
-                                            input >> this->w_DEM      ;
-                                            input >> this->l_DEM      ;}
-      if ( line == "$FEM Constants"     ) { input >> this->numips     ;
-                                            input >> this->nstress    ;
-                                            input >> this->nisv       ;
-                                            input >> this->ndof       ;
-                                            input >> this->nel        ;
-                                            input >> this->neldof     ;}
-      if ( line == "$Time Parameters"   ) { input >> this->t          ;
-                                            input >> this->dt         ;
-                                            input >> this->print_int  ;
-                                            input >> this->n_print    ;
-                                            input >> this->time_tot   ;}
-      if ( line == "$Strain Rate"       ) { input >> this->strainrate ;}
-      if ( line == "$Mass Damping"      ) { input >> this->alphaM     ;}
+      if ( line == "$FEM Constitutive"   ) { input >> this->lambda     ;
+                                             input >> this->mu         ;
+                                             input >> this->rho        ;}
+      if ( line == "$Gravity"            ) { input >> this->grav       ;}
+      if ( line == "$FEM Geometry"       ) { input >> this->d          ;
+                                             input >> this->LDratio    ;}
+      if ( line == "$DEM Geometry"       ) { input >> this->h_DEM      ;
+                                             input >> this->w_DEM      ;
+                                             input >> this->l_DEM      ;}
+      if ( line == "$FEM Constants"      ) { input >> this->numips     ;
+                                             input >> this->nstress    ;
+                                             input >> this->nisv       ;
+                                             input >> this->ndof       ;
+                                             input >> this->nel        ;
+                                             input >> this->neldof     ;}
+      if ( line == "$Time Parameters"    ) { input >> this->t          ;
+                                             input >> this->dt         ;
+                                             input >> this->print_int  ;
+                                             input >> this->n_print    ;
+                                             input >> this->time_tot   ;}
+      if ( line == "$Strain Rate"        ) { input >> this->strainrate ;}
+      if ( line == "$Mass Damping"       ) { input >> this->alphaM     ;}
+      if ( line == "$Finite Applied Disp") { this->whichDisp = 1       ;}
+      if ( line == "$SHPB Applied Disp  ") { this->whichDisp = 2       ;}
     }
   input.close();
 }
@@ -95,6 +97,18 @@ void femInput::echoData()
   cout << endl;
   cout << "Mass Damping:"                             << endl;
   cout << "   alphaM         = " << this->alphaM      << endl;
+  cout << endl;
+  cout << "Which Displacement?"						  << endl;
+  if (this->whichDisp == 1)
+  {
+  	cout << "   applied finite displacement"          << endl;
+  } else if (this->whichDisp == 2)
+  {
+  	cout << "   'correct' SHPB displacement"          << endl;
+  } else
+  {
+  	cout << "   Error! No Specified Disp   "          << endl;
+  }
   cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
   cout << endl << endl << endl;
 }

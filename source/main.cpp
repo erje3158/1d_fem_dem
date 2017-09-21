@@ -215,15 +215,17 @@ int main(int argc, char * argv[]) {
     createCoords(coords,params,h);
     createLM(LM,params);
     whichELIP(rank, el, ip);
-    
-    dispfun_time.zeros(nsteps);
-    dispfun_disp.zeros(nsteps);
-    dispfun_eps.zeros(nsteps);
-    
-    for(ii = 1; ii < nsteps; ii++) {
-        dispfun_time(ii) = (ii-1.0) * time_tot/double(nsteps);
-        dispfun_disp(ii) = -h * (exp(strainrate * dispfun_time(ii))-1.0);
-        dispfun_eps(ii)  = log(1.0+dispfun_disp(ii)/h);
+
+    if (femParams.whichDisp == 1)
+    {
+    	finiteAppliedDisp(dispfun_time, dispfun_disp, dispfun_eps, nsteps, time_tot, strainrate);
+    } else if (femParams.whichDisp == 2)
+    {
+    	shpbAppliedDisp();
+    } else 
+    {
+    	cout << "ERROR: NO SPECIFICED DISPLACEMENT" << endl;
+    	exit(0);
     }
     
     createG(g, dispfun_disp, params, 0);

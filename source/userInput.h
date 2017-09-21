@@ -9,8 +9,8 @@ class femInput
 	public:
   
   double lambda;         // Pa
-	double mu;             // Pa
-	double rho;            // kg/m^3
+  double mu;             // Pa
+  double rho;            // kg/m^3
 
   double grav;           // m/s^2
 
@@ -37,6 +37,10 @@ class femInput
   double strainrate;     // s^-1
 
   double alphaM;         // Mass Proportional Parameter
+
+  int whichDisp;		 // If 0 - error
+  						 // If 1 - applied finite displacement
+  						 // If 2 - "correct" SHPB displacement
 
   femInput()
   {
@@ -69,6 +73,8 @@ class femInput
     strainrate   = 0.0;
 
    	alphaM       = 0.0; 
+
+   	whichDisp    = 0;
   }
 
   ~femInput();
@@ -81,14 +87,14 @@ class femInput
 class demInput
 {
 public:
-  double maxOverlap;
+  double maxOverlap;     //% 
 
-  double youngsMod;
-  double poisRatio;
+  double youngsMod;      //Pa 
+  double poisRatio;		 //
 
-  double timestep;
+  double timestep;       //s
 
-  double damping;
+  double damping;        //
 
   demInput()
   {
