@@ -25,7 +25,7 @@ void finiteAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_t
         eps(ii)  = log(1.0 + disp(ii)/h);
         if (ii==5)
         {
-            cout << "HERE 3a"
+            cout << "HERE 3a" << endl;
         	cout << "time = " << time(5) << endl;
     		cout << "disp = " << disp(5) << endl;
     		cout << "eps = " << eps(5) << endl;
