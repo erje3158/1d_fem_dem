@@ -18,6 +18,11 @@ void finiteAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_t
     disp.zeros(nsteps);
     eps.zeros(nsteps);
     cout << "HERE 2a" << endl;
+
+    cout << "nsteps = " << nsteps << endl;
+    cout << "time_tot = " << time_tot << endl;
+    cout << "strainrate = " << strainrate << endl;
+    cout << "h = " << h << endl;
     
     for(int ii = 1; ii < nsteps; ii++) {
         time(ii) = (ii-1.0) * time_tot/double(nsteps);
