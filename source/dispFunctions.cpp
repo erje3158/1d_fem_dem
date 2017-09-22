@@ -25,6 +25,7 @@ void finiteAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_t
         eps(ii)  = log(1.0 + disp(ii)/h);
         if (ii==5)
         {
+            cout << "HERE 3a"
         	cout << "time = " << time(5) << endl;
     		cout << "disp = " << disp(5) << endl;
     		cout << "eps = " << eps(5) << endl;
@@ -44,7 +45,7 @@ void shpbAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot
 
     int ll = 0;
 
-    cout << "HERE 2a" << endl;
+    cout << "HERE 1b" << endl;
 
     for(int ii = 1; ii < nsteps; ii++) {
         time(ii) = (ii-1.0) * time_tot/double(nsteps);

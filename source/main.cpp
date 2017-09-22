@@ -217,6 +217,11 @@ int main(int argc, char * argv[]) {
     createLM(LM,params);
     whichELIP(rank, el, ip);
 
+    cout << "nsteps = " << nsteps << endl;
+    cout << "time_tot = " << time_tot << endl;
+    cout << "strainrate = " << strainrate << endl;
+    cout << "h = " << h << endl;
+
     if (femParams.whichDisp == 1)
     {
     	finiteAppliedDisp(dispfun_time, dispfun_disp, dispfun_eps, nsteps, time_tot, strainrate, h);
