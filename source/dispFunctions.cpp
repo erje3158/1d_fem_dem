@@ -17,18 +17,10 @@ void finiteAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, double tim
     disp.zeros(nsteps);
     eps.zeros(nsteps);
 
-    cout << "time_tot = " << time_tot << endl;
-    
     for(int ii = 1; ii < nsteps; ii++) {
         time(ii) = (ii-1.0) * time_tot/double(nsteps);
         disp(ii) = -h * (exp(strainrate * time(ii))-1.0);
         eps(ii)  = log(1.0 + disp(ii)/h);
-        if (ii==5)
-        {
-        	cout << "time = " << time(5) << endl;
-    		cout << "disp = " << disp(5) << endl;
-    		cout << "eps = " << eps(5) << endl;
-        }
     }
 }
 

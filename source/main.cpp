@@ -230,10 +230,6 @@ int main(int argc, char * argv[]) {
     	cout << "ERROR: NO SPECIFICED DISPLACEMENT" << endl;
     	exit(0);
     }
-
-    cout << "time = " << dispfun_time(5) << endl;
-    cout << "disp = " << dispfun_disp(5) << endl;
-    cout << "eps = " << dispfun_eps(5) << endl;
     
     createG(g, dispfun_disp, params, 0);
     gd_n = 0.0;
