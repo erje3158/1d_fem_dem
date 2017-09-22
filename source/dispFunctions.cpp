@@ -11,18 +11,13 @@
 using namespace std;
 using namespace arma;
 
-void finiteAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot, double strainrate, double h)
+void finiteAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, double time_tot, double strainrate, double h)
 {
-	cout << "HERE 1a" << endl;
     time.zeros(nsteps);
     disp.zeros(nsteps);
     eps.zeros(nsteps);
-    cout << "HERE 2a" << endl;
 
-    cout << "nsteps = " << nsteps << endl;
     cout << "time_tot = " << time_tot << endl;
-    cout << "strainrate = " << strainrate << endl;
-    cout << "h = " << h << endl;
     
     for(int ii = 1; ii < nsteps; ii++) {
         time(ii) = (ii-1.0) * time_tot/double(nsteps);
@@ -30,16 +25,14 @@ void finiteAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_t
         eps(ii)  = log(1.0 + disp(ii)/h);
         if (ii==5)
         {
-            cout << "HERE 3a" << endl;
         	cout << "time = " << time(5) << endl;
     		cout << "disp = " << disp(5) << endl;
     		cout << "eps = " << eps(5) << endl;
         }
     }
-    cout << "HERE 4a" << endl;
 }
 
-void shpbAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot, double strainrate, double h)
+void shpbAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, double time_tot, double strainrate, double h)
 {
 	vec time_update;
 
@@ -49,8 +42,6 @@ void shpbAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot
     time_update.zeros(nsteps);
 
     int ll = 0;
-
-    cout << "HERE 1b" << endl;
 
     for(int ii = 1; ii < nsteps; ii++) {
         time(ii) = (ii-1.0) * time_tot/double(nsteps);
@@ -68,5 +59,4 @@ void shpbAppliedDisp(vec & time, vec & disp, vec & eps, int nsteps, int time_tot
 			eps(ii) = eps(ii-1);
 		}
     }
-    cout << "HERE 2b" << endl;
 }
