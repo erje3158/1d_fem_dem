@@ -12,7 +12,7 @@ $FEM Geometry
 
 $DEM Geometry
 0.003
-0.0
+0.003
 0.003
 
 $FEM Constants
