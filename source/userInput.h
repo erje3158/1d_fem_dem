@@ -112,5 +112,6 @@ public:
 
   void readData(const char * inputFile);
   void echoData();
+  void checkData();
 
 };

@@ -113,7 +113,7 @@ void femInput::echoData()
   cout << endl << endl << endl;
 }
 
-femInput::checkData()
+void femInput::checkData()
 {
   if (this->d <= 0.0)
   {
@@ -150,18 +150,11 @@ femInput::checkData()
     cout << "l_DEM must be > 0" << endl;
     exit(0);
   }
-  if (this->numips <= 0)
+  if (this->numips <= 1)
   {
     cout << endl << endl;
     cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
-    cout << "numips must be > 0" << endl;
-    exit(0);
-  }
-  if (this->nisv <= 0)
-  {
-    cout << endl << endl;
-    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
-    cout << "nisv must be > 0" << endl;
+    cout << "numips must be >= 2" << endl;
     exit(0);
   }
   if (this->ndof <= 0)
@@ -169,6 +162,20 @@ femInput::checkData()
     cout << endl << endl;
     cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
     cout << "ndof must be > 0" << endl;
+    exit(0);
+  }
+  if (this->nel <= 1)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "nel must be > 1" << endl;
+    exit(0);
+  }
+  if (this->neldof <= 1)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "neldof must be > 1" << endl;
     exit(0);
   }
 }
@@ -217,4 +224,21 @@ void demInput::echoData()
   cout << endl << endl << endl;
 }
 
+void demInput::checkData()
+{
+  if (this->youngsMod <= 0.0)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "youngsMod must be > 0" << endl;
+    exit(0);
+  }
+  if (this->timestep <= 0.0)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "timestep must be > 0" << endl;
+    exit(0);
+  }
+}
 

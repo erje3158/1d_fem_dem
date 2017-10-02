@@ -337,6 +337,7 @@ int main(int argc, char * argv[]) {
         femParams.echoData();
         femParams.checkData();
         demParams.echoData();
+        demParams.checkData();
         printMesh(coords, LM, g);
     }
 
