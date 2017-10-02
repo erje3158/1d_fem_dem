@@ -113,6 +113,66 @@ void femInput::echoData()
   cout << endl << endl << endl;
 }
 
+femInput::checkData()
+{
+  if (this->d <= 0.0)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "Diameter must be > 0" << endl;
+    exit(0);
+  }
+  if (this->LDratio <= 0.0)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "LDratio must be > 0" << endl;
+    exit(0);
+  }
+  if (this->h_DEM <= 0.0)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "h_DEM must be > 0" << endl;
+    exit(0);
+  }
+  if (this->w_DEM <= 0.0)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "w_DEM must be > 0" << endl;
+    exit(0);
+  }
+  if (this->l_DEM <= 0.0)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "l_DEM must be > 0" << endl;
+    exit(0);
+  }
+  if (this->numips <= 0)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "numips must be > 0" << endl;
+    exit(0);
+  }
+  if (this->nisv <= 0)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "nisv must be > 0" << endl;
+    exit(0);
+  }
+  if (this->ndof <= 0)
+  {
+    cout << endl << endl;
+    cout << "ERROR! ~~~~~~~~~~~~~~~~" << endl;
+    cout << "ndof must be > 0" << endl;
+    exit(0);
+  }
+}
+
 demInput::~demInput(void)
 {
   //cout << endl << endl << "demInput is being destroyed" << endl << endl;

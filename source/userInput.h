@@ -81,6 +81,7 @@ class femInput
 
   void readData(const char * inputFile);
   void echoData();
+  void checkData();
 
 };
 
