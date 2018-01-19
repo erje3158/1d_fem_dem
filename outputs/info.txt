@@ -1,1 +1,5 @@
 Outputs are generated here via a symbolic link to $WORKDIR named after the qsub generated job number.
+
+I would like plot.py to loop over the various folders of data in this file without needing to specify
+the folders' names. Once it finds data (series of .txt files), I want it to pass the folder to plot.R 
+to run some plots. Going to need to make plot.R files for additional DOFs.
